@@ -2,7 +2,7 @@ import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
-import { PenBox } from "lucide-react";
+import { BookmarkCheck, BookmarkIcon, BriefcaseBusiness, BriefcaseBusinessIcon, PenBox } from "lucide-react";
 
 const Navbar = () => {
     const [showSignIn, setShowSignIn] = useState(false);
@@ -45,7 +45,7 @@ const Navbar = () => {
                                 Login
                             </Button>
                         </SignedOut>
-                        <SignedIn>
+                        <SignedIn >
                             {/* add a condition here  */}
                             <Link to="/post-job">
                                 <Button
@@ -56,7 +56,28 @@ const Navbar = () => {
                                     Post a Job
                                 </Button>
                             </Link>
-                            <UserButton />
+                            <UserButton
+                                appearance={{
+                                    elements: {
+                                        avatarBox: "w-10 h-10",
+                                    },
+                                }}
+                            >
+                                <UserButton.MenuItems>
+                                    <UserButton.Link
+                                        label="My Applied Jobs"
+                                        labelIcon={
+                                            <BriefcaseBusiness size={15} />
+                                        }
+                                        href="/my-jobs"
+                                    />
+                                    <UserButton.Link
+                                        label="Saved Jobs"
+                                        labelIcon={<BookmarkIcon size={15} />}
+                                        href="/my-jobs"
+                                    />
+                                </UserButton.MenuItems>
+                            </UserButton>
                         </SignedIn>
                     </div>
 
