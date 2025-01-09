@@ -19,23 +19,6 @@ const JobCard = ({ job }) => {
     };
     return (
         <div className="flex flex-col md:flex-row hover:bg-gray-800 justify-between text-white items-center bg-[#020818] border shadow-lg rounded-lg p-4 gap-4 relative">
-            {/* Bookmark Icon */}
-            {/* <div className="absolute top-1 right-1 cursor-pointer">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 text-yellow-400 hover:text-yellow-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 5v16l7-5 7 5V5a2 2 0 00-2-2H7a2 2 0 00-2 2z"
-                    />
-                </svg>
-            </div> */}
             <Link to={`/job/:id`}>
                 <div className="flex flex-col md:flex-row gap-4">
                     {/* Job Info and Company Logo */}
@@ -92,17 +75,14 @@ const JobCard = ({ job }) => {
             </Link>
 
             {/* Buttons and Date */}
-            <div className="flex flex-col items-end gap-4 ">
-                <div className="flex flex-col text-center gap-2">
-                    <Link to={job.url} target="_blank">
-                        <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-400 hover:to-blue-600 shadow-md">
-                            Apply Now
-                        </button>
-                    </Link>
-                    {/* <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-400 hover:to-blue-600 shadow-md">
-                        See More
-                    </button> */}
+            <div className="flex flex-col text-center items-end gap-4 ">
+                <Link to={job.url} target="_blank">
+                    <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-400 hover:to-blue-600 shadow-md">
+                        Apply Now
+                    </button>
+                </Link>
 
+                <div className="">
                     {job.publication_date && (
                         <p className="text-sm text-gray-400 ">
                             Posted{" "}

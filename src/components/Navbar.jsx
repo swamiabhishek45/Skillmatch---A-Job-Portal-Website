@@ -1,7 +1,27 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/clerk-react";
+import React, { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { Button } from "./ui/button";
+import { PenBox } from "lucide-react";
 
 const Navbar = () => {
+    const [showSignIn, setShowSignIn] = useState(false);
+
+    const [search, setSearch] = useSearchParams();
+
+    useEffect(() => {
+        if (search.get("sign-in")) {
+            setShowSignIn(true);
+        }
+    }, [search]);
+
+    const handleOveryLayClick = (e) => {
+        if (e.target == e.currentTarget) {
+            setShowSignIn(false);
+            setSearch({});
+        }
+    };
+
     return (
         <nav className=" text-white bg-[#070916] border-b">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,20 +29,35 @@ const Navbar = () => {
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link to="/">
-                        <span className="roboto-slab text-2xl md:text-3xl font-bold text-purple-500">
-                            remotely
-                        </span>
+                            <span className="roboto-slab text-2xl md:text-3xl font-bold text-purple-500">
+                                remotely
+                            </span>
                         </Link>
                     </div>
 
                     {/* Navigation */}
                     <div className="flex space-x-4">
-                        <button className="px-4 py-2 rounded-md bg-[#72389f] hover:bg-purple-600">
-                            Log In
-                        </button>
-                        <button className="px-4 py-2 rounded-md bg-gray-700 hover:bg-gray-600">
-                            Sign Up
-                        </button>
+                        <SignedOut>
+                            <Button
+                                variant="outline"
+                                onClick={() => setShowSignIn(true)}
+                            >
+                                Login
+                            </Button>
+                        </SignedOut>
+                        <SignedIn>
+                            {/* add a condition here  */}
+                            <Link to="/post-job">
+                                <Button
+                                    variant="destructive"
+                                    className="rounded-full"
+                                >
+                                    <PenBox size={20} className="mr-2" />
+                                    Post a Job
+                                </Button>
+                            </Link>
+                            <UserButton />
+                        </SignedIn>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -50,6 +85,17 @@ const Navbar = () => {
                     </div> */}
                 </div>
             </div>
+            {showSignIn && (
+                <div
+                    className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
+                    onClick={handleOveryLayClick}
+                >
+                    <SignIn
+                        signUpForceRedirectUrl="/onboarding"
+                        fallBackRedirectUrl="/onboarding"
+                    />
+                </div>
+            )}
         </nav>
     );
 };
