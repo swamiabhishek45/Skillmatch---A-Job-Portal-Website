@@ -42,11 +42,12 @@ const RecentJobs = () => {
             <div className="flex items-center justify-center mt-20 mb-10">
                 <Button
                     borderRadius="1.75rem"
-                    className="bg-white dark:bg-[#070916] text-black dark:text-white border-neutral-200 dark:border-slate-800 poppins  font-semibold"
+                    className="bg-white dark:bg-[#070916] text-black dark:text-white border-neutral-200 dark:border-slate-800 poppins cursor-default  font-semibold"
                 >
                     Recentely Job Circular
                 </Button>
             </div>
+
             <div>
                 <ul className="flex flex-col gap-2 py-4 px-10">
                     {jobs.map((job, index) => (
@@ -54,12 +55,12 @@ const RecentJobs = () => {
                     ))}
                 </ul>
             </div>
+
             <div className="flex items-center justify-center">
                 <Link to="/jobs">
                     <button className="flex items-center gap-2 xshadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
                         Show more jobs
                         <FaAngleRight className="mt-[2px]" />
-                        {/* <img src={RightIcon} width={22} className="ml-2 mt-1" /> */}
                     </button>
                 </Link>
             </div>

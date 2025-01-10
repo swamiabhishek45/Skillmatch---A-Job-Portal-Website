@@ -1,15 +1,9 @@
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
-import CompLogo from "../assets/image.png";
-import {
-    FaBuilding,
-    FaBriefcase,
-    FaMapMarkerAlt,
-    FaDollarSign,
-    FaBookmark,
-} from "react-icons/fa";
-import { MdOutlineWorkOutline } from "react-icons/md";
+import CompLogo from "../assets/joblogo.png";
+import { FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 const JobCard = ({ job }) => {
     const formatJobType = (type) => {
         return type
@@ -17,6 +11,7 @@ const JobCard = ({ job }) => {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
             .join(" "); // Join with space
     };
+    
     return (
         <div className="flex flex-col md:flex-row hover:bg-gray-800 justify-between text-white items-center bg-[#020818] border shadow-lg rounded-lg p-4 gap-4 relative">
             <Link to={`/job/:id`}>

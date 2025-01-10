@@ -8,7 +8,8 @@ import MyJobs from "./pages/MyJobs";
 import SavedJobs from "./pages/SavedJobs";
 import PostJob from "./pages/PostJob";
 import { ThemeProvider } from "./components/ui/theme-provider";
-import './App.css'
+import ProtectedRoute from "./components/ProtectedRoute";
+import "./App.css";
 function App() {
     const router = createBrowserRouter([
         {
@@ -20,27 +21,51 @@ function App() {
                 },
                 {
                     path: "/onboarding",
-                    element: <Onboarding />,
+                    element: (
+                        <ProtectedRoute>
+                            <Onboarding />
+                        </ProtectedRoute>
+                    ),
                 },
                 {
                     path: "/jobs",
-                    element: <JobListing />,
+                    element: (
+                        <ProtectedRoute>
+                            <JobListing />
+                        </ProtectedRoute>
+                    ),
                 },
                 {
                     path: "/job/:id",
-                    element: <Job />,
+                    element: (
+                        <ProtectedRoute>
+                            <Job />
+                        </ProtectedRoute>
+                    ),
                 },
                 {
                     path: "/post-job",
-                    element: <PostJob />,
+                    element: (
+                        <ProtectedRoute>
+                            <PostJob />
+                        </ProtectedRoute>
+                    ),
                 },
                 {
                     path: "/my-jobs",
-                    element: <MyJobs />,
+                    element: (
+                        <ProtectedRoute>
+                            <MyJobs />
+                        </ProtectedRoute>
+                    ),
                 },
                 {
                     path: "/saved-jobs",
-                    element: <SavedJobs />,
+                    element: (
+                        <ProtectedRoute>
+                            <SavedJobs />
+                        </ProtectedRoute>
+                    ),
                 },
             ],
         },

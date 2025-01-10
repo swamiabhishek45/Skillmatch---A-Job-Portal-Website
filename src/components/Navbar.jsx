@@ -1,13 +1,21 @@
-import { SignedIn, SignedOut, SignIn, UserButton } from "@clerk/clerk-react";
+import {
+    SignedIn,
+    SignedOut,
+    SignIn,
+    UserButton,
+    useUser,
+} from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
-import { BookmarkCheck, BookmarkIcon, BriefcaseBusiness, BriefcaseBusinessIcon, PenBox } from "lucide-react";
+import { BookmarkIcon, BriefcaseBusiness, PenBox } from "lucide-react";
 
 const Navbar = () => {
     const [showSignIn, setShowSignIn] = useState(false);
 
     const [search, setSearch] = useSearchParams();
+
+    const { user } = useUser();
 
     useEffect(() => {
         if (search.get("sign-in")) {
@@ -45,17 +53,18 @@ const Navbar = () => {
                                 Login
                             </Button>
                         </SignedOut>
-                        <SignedIn >
-                            {/* add a condition here  */}
-                            <Link to="/post-job">
-                                <Button
-                                    variant="destructive"
-                                    className="rounded-full"
-                                >
-                                    <PenBox size={20} className="mr-2" />
-                                    Post a Job
-                                </Button>
-                            </Link>
+                        <SignedIn>
+                            {user?.unsafeMetadata?.role === "recruiter" && (
+                                <Link to="/post-job">
+                                    <Button
+                                        variant="destructive"
+                                        className="rounded-full"
+                                    >
+                                        <PenBox size={20} className="mr-2" />
+                                        Post a Job
+                                    </Button>
+                                </Link>
+                            )}
                             <UserButton
                                 appearance={{
                                     elements: {
@@ -63,20 +72,34 @@ const Navbar = () => {
                                     },
                                 }}
                             >
-                                <UserButton.MenuItems>
-                                    <UserButton.Link
-                                        label="My Applied Jobs"
-                                        labelIcon={
-                                            <BriefcaseBusiness size={15} />
-                                        }
-                                        href="/my-jobs"
-                                    />
-                                    <UserButton.Link
-                                        label="Saved Jobs"
-                                        labelIcon={<BookmarkIcon size={15} />}
-                                        href="/my-jobs"
-                                    />
-                                </UserButton.MenuItems>
+                                {user?.unsafeMetadata?.role === "recruiter" ? (
+                                    <UserButton.MenuItems>
+                                        <UserButton.Link
+                                            label="My Posted Jobs"
+                                            labelIcon={
+                                                <BriefcaseBusiness size={15} />
+                                            }
+                                            href="/posted-jobs"
+                                        />
+                                    </UserButton.MenuItems>
+                                ) : (
+                                    <UserButton.MenuItems>
+                                        <UserButton.Link
+                                            label="My Applied Jobs"
+                                            labelIcon={
+                                                <BriefcaseBusiness size={15} />
+                                            }
+                                            href="/my-jobs"
+                                        />
+                                        <UserButton.Link
+                                            label="Saved Jobs"
+                                            labelIcon={
+                                                <BookmarkIcon size={15} />
+                                            }
+                                            href="/saved-jobs"
+                                        />
+                                    </UserButton.MenuItems>
+                                )}
                             </UserButton>
                         </SignedIn>
                     </div>
