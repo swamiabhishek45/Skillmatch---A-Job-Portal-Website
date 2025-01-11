@@ -7,11 +7,11 @@ import FAQ from "@/components/FAQ";
 export default function LandingPage() {
     
     return (    
-        <>
+        <div className="w-full">
         <Header />
         <SlidingCategory />
         <RecentJobs />
         <FAQ />
-        </>
+        </div>
     );
 }

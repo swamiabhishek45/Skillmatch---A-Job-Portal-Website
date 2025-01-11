@@ -25,9 +25,7 @@ const ProtectedRoute = ({ children }) => {
     ) {
         return <Navigate to="/jobs" />;
     }
-    if (user?.unsafeMetadata?.role === "recruiter" && pathname === "/jobs") {
-        return <Navigate to="/post-job" />;
-    }
+    
 
     return children;
 };

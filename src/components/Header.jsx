@@ -52,7 +52,7 @@ const Header = () => {
                         className="work-sans md:text-md cursor-pointer rounded-lg bg-primarySkyBlue px-6 py-3 text-center text-sm font-medium text-white shadow-md bg-[#72389f] focus:ring-2 focus:ring-offset-2 focus:ring-primarySkyBlue transition-transform transform hover:scale-105 active:scale-95"
                         aria-label="Explore Careers"
                     >
-                        Find Jobs
+                        Search Jobs
                     </Link>
 
                     <Link

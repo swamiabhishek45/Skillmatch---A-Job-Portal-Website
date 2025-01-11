@@ -35,7 +35,10 @@ const FAQ = () => {
         },
     ];
     return (
-        <div className="m-5 md:m-20">
+        <div className="m-5 md:m-20 text-center">
+            <h1 className="text-xl md:text-3xl font-bold poppins my-10">
+                Frequently Asked <span className="text-purple-500">Questions</span>
+            </h1>
             <Accordion type="single" collapsible>
                 {data.map((faq) => (
                     <AccordionItem value={`index-${faq.id}`} key={faq.id}>

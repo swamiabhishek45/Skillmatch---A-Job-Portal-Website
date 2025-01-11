@@ -47,16 +47,16 @@ const JobCard = ({ job }) => {
                     {/* Job Tags */}
                     <div>
                         <div className="flex flex-wrap gap-2 my-2">
-                            <div className="flex gap-1 p-2 bg-sky-700 text-white w-fit rounded-full">
-                                <FaBriefcase className="mt-[2px]" />
-                                <p className="text-sm">
-                                    {formatJobType(job.job_type)}
-                                </p>
-                            </div>
                             <div className="flex gap-1 p-2 bg-red-800 text-white w-fit rounded-full">
                                 <FaMapMarkerAlt className="mt-[2px]" />
                                 <p className="text-sm">
                                     {job.candidate_required_location}
+                                </p>
+                            </div>
+                            <div className="flex gap-1 p-2 bg-sky-700 text-white w-fit rounded-full">
+                                <FaBriefcase className="mt-[2px]" />
+                                <p className="text-sm">
+                                    {formatJobType(job.job_type)}
                                 </p>
                             </div>
                             <div className="flex gap-1 p-2 bg-green-700 text-white w-fit rounded-full">

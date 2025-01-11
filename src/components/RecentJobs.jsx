@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/moving-border";
 import JobCard from "./JobCard";
-import RightIcon from "../assets/right.png";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
 
