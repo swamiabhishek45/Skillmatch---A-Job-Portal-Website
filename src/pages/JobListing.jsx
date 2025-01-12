@@ -1,22 +1,30 @@
 import { getJobs } from "@/api/apiJobs";
-import { useSession } from "@clerk/clerk-react";
-import React, { useEffect } from "react";
+import useFetch from "@/hooks/useFetch";
+import { useUser } from "@clerk/clerk-react";
+import { useEffect, useState } from "react";
+import { BarLoader } from "react-spinners";
 
 const JobListing = () => {
-    const { session } = useSession();
+    const { isLoaded } = useUser();
 
-    const fetchJobs = async () => {
-        const supabaseAccessToken = await session.getToken({
-            template: "supabase",
-        });
+    const [location, setLocation] = useState("");
+    const [company_id, setCompany_id] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
-        const data = await getJobs(supabaseAccessToken);
-        console.log(data);
-    };
+    const {
+        fn: fnJobs,
+        data: dataJobs,
+        loading: loadingJobs,
+    } = useFetch(getJobs, { location, company_id, searchQuery });
 
     useEffect(() => {
-        fetchJobs();
-    }, []);
+        if (isLoaded) fnJobs();
+    }, [isLoaded, location, company_id, searchQuery]);
+
+    if (!isLoaded) {
+        return <BarLoader width="100%" className="mb-4" color="purple" />;
+    }
+    
     return <div>JobListing</div>;
 };
 

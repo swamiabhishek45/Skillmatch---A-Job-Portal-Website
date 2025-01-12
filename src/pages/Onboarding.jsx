@@ -20,7 +20,7 @@ const Onboarding = () => {
             });
     };
 
-    // user can't go back to onboarding route
+    // if metadata has role then user can't go back to onboarding route
     useEffect(() => {
         if (user?.unsafeMetadata?.role) {
             navigate(
@@ -34,6 +34,7 @@ const Onboarding = () => {
     if (!isLoaded) {
         return <BarLoader width="100%" className="mb-4" color="purple" />;
     }
+    
     return (
         <div className="flex justify-center items-center mt-40 flex-col">
             <h2 className="text-7xl sm:text-8xl font-extrabold poppins">
