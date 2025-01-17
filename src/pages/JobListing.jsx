@@ -1,4 +1,5 @@
 import { getJobs } from "@/api/apiJobs";
+import JobCard from "@/components/JobCard";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ const JobListing = () => {
 
     const {
         fn: fnJobs,
-        data: dataJobs,
+        data: jobs,
         loading: loadingJobs,
     } = useFetch(getJobs, { location, company_id, searchQuery });
 
@@ -24,8 +25,29 @@ const JobListing = () => {
     if (!isLoaded) {
         return <BarLoader width="100%" className="mb-4" color="purple" />;
     }
-    
-    return <div>JobListing</div>;
+
+    return (
+        <div>
+            <h1 className="text-center font-extrabold text-3xl sm:text-5xl md:text-6xl poppins my-5">
+                Jobs added recently
+            </h1>
+
+            {/* Add filters here  */}
+            {loadingJobs && (
+                <BarLoader width="100%" className="mb-4" color="purple" />
+            )}
+
+            {loadingJobs === false && (
+                <div>
+                    {jobs?.length ? (
+                        jobs.map((job) => <JobCard key={job.id} job={job} />)
+                    ) : (
+                        <div>No Jobs Found 🥲</div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
 };
 
 export default JobListing;

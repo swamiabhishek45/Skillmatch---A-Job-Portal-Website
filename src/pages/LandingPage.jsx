@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="w-full">
         <Header />
         <SlidingCategory />
-        <RecentJobs />
+        {/* <RecentJobs /> */}
         <FAQ />
         </div>
     );

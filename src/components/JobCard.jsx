@@ -5,12 +5,12 @@ import { FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
-    const formatJobType = (type) => {
-        return type
-            .split("_") // Split by underscore
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-            .join(" "); // Join with space
-    };
+    // const formatJobType = (type) => {
+    //     return type
+    //         .split("_") // Split by underscore
+    //         .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+    //         .join(" "); // Join with space
+    // };
     
     return (
         <div className="flex flex-col md:flex-row hover:bg-gray-800 justify-between text-white items-center bg-[#020818] border shadow-lg rounded-lg p-4 gap-4 relative">
@@ -56,7 +56,7 @@ const JobCard = ({ job }) => {
                             <div className="flex gap-1 p-2 bg-sky-700 text-white w-fit rounded-full">
                                 <FaBriefcase className="mt-[2px]" />
                                 <p className="text-sm">
-                                    {formatJobType(job.job_type)}
+                                    {job.job_type}
                                 </p>
                             </div>
                             <div className="flex gap-1 p-2 bg-green-700 text-white w-fit rounded-full">

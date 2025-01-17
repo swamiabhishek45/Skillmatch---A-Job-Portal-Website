@@ -12,7 +12,7 @@ const RecentJobs = () => {
         const fetchJobs = async () => {
             try {
                 const response = await fetch(
-                    "https://remotive.io/api/remote-jobs?limit=3"
+                    "https://remotive.com/api/remote-jobs?limit=3"
                 );
                 const data = await response.json();
 

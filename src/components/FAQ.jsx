@@ -35,11 +35,11 @@ const FAQ = () => {
         },
     ];
     return (
-        <div className="m-5 md:m-20 text-center">
-            <h1 className="text-xl md:text-3xl font-bold poppins my-10">
+        <div className="m-5 md:m-20">
+            <h1 className="text-xl md:text-3xl font-bold text-center poppins my-10">
                 Frequently Asked <span className="text-purple-500">Questions</span>
             </h1>
-            <Accordion type="single" collapsible>
+            <Accordion type="single" collapsible className=" max-w-6xl m-auto">
                 {data.map((faq) => (
                     <AccordionItem value={`index-${faq.id}`} key={faq.id}>
                         <div className="bg-[#0e1728] my-5 px-5 rounded-md">
