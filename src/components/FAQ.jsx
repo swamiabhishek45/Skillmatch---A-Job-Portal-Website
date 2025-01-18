@@ -35,9 +35,10 @@ const FAQ = () => {
         },
     ];
     return (
-        <div className="m-5 md:m-20">
+        <div className="mx-auto max-w-7xl">
             <h1 className="text-xl md:text-3xl font-bold text-center poppins my-10">
-                Frequently Asked <span className="text-purple-500">Questions</span>
+                Frequently Asked{" "}
+                <span className="text-purple-500">Questions</span>
             </h1>
             <Accordion type="single" collapsible className=" max-w-6xl m-auto">
                 {data.map((faq) => (

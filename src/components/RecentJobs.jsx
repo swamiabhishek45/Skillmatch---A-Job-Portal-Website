@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/moving-border";
-import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
+import RemoteJobCard from "./RemoteJobCard";
 
 const RecentJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -12,7 +12,7 @@ const RecentJobs = () => {
         const fetchJobs = async () => {
             try {
                 const response = await fetch(
-                    "https://remotive.com/api/remote-jobs?limit=3"
+                    "https://remotive.com/api/remote-jobs?limit=6"
                 );
                 const data = await response.json();
 
@@ -24,7 +24,7 @@ const RecentJobs = () => {
                             new Date(b.publication_date) -
                             new Date(a.publication_date)
                     ) // Sort by latest
-                    .slice(0, 3); // Get first 3 jobs
+                    .slice(0, 6); // Get first 3 jobs
 
                 setJobs(sortedJobs);
                 console.log(sortedJobs);
@@ -48,14 +48,14 @@ const RecentJobs = () => {
             </div>
 
             <div>
-                <ul className="flex flex-col gap-2 py-4 px-10">
+                <ul className="mx-auto max-w-6xl  grid md:grid-cols-2 lg:grid-cols-2 gap-5">
                     {jobs.map((job, index) => (
-                        <JobCard key={index} job={job} />
+                        <RemoteJobCard key={index} job={job} />
                     ))}
                 </ul>
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="flex my-10 items-center justify-center">
                 <Link to="/jobs">
                     <button className="flex items-center gap-2 xshadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
                         Show more jobs

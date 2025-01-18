@@ -1,20 +1,19 @@
 import React from "react";
 import { formatDistanceToNow } from "date-fns";
-import CompLogo from "../assets/joblogo.png";
+
 import { FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const JobCard = ({ job }) => {
-    // const formatJobType = (type) => {
-    //     return type
-    //         .split("_") // Split by underscore
-    //         .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-    //         .join(" "); // Join with space
-    // };
+const JobCard = ({
+    job,
+    isMyJob = false,
+    savedInit = false,
+    onJobSaved = () => {},
+}) => {
     
     return (
         <div className="flex flex-col md:flex-row hover:bg-gray-800 justify-between text-white items-center bg-[#020818] border shadow-lg rounded-lg p-4 gap-4 relative">
-            <Link to={`/job/:id`}>
+            <Link to={`/job/${job.id}`}>
                 <div className="flex flex-col md:flex-row gap-4">
                     {/* Job Info and Company Logo */}
                     <div className="flex gap-2">
@@ -22,7 +21,7 @@ const JobCard = ({ job }) => {
                         <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
                             <img
                                 loading="lazy"
-                                src={CompLogo}
+                                src={job.company.company_logo_url}
                                 alt="Company Logo"
                                 className="rounded-full"
                             />
@@ -35,7 +34,7 @@ const JobCard = ({ job }) => {
                             <p>
                                 by{" "}
                                 <span className="font-semibold">
-                                    {job.company_name}
+                                    {job.company.company_name}
                                 </span>{" "}
                                 in{" "}
                                 <span className="text-blue-500">
@@ -55,9 +54,7 @@ const JobCard = ({ job }) => {
                             </div>
                             <div className="flex gap-1 p-2 bg-sky-700 text-white w-fit rounded-full">
                                 <FaBriefcase className="mt-[2px]" />
-                                <p className="text-sm">
-                                    {job.job_type}
-                                </p>
+                                <p className="text-sm">{job.job_type}</p>
                             </div>
                             <div className="flex gap-1 p-2 bg-green-700 text-white w-fit rounded-full">
                                 <p className="text-sm">
