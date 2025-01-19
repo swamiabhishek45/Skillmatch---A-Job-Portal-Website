@@ -5,7 +5,9 @@ export async function getJobs(token, { location, company_id, searchQuery }) {
 
     let query = supabase
         .from("jobs")
-        .select("*, company:companies(company_name, company_logo_url), saved: saved_jobs(id)");
+        .select(
+            "*, company:companies(company_name, company_logo_url), saved: saved_jobs(id)"
+        );
 
     if (location) {
         query = query.eq("candidate_required_location", location);
@@ -27,4 +29,33 @@ export async function getJobs(token, { location, company_id, searchQuery }) {
     }
 
     return data;
+}
+
+export async function saveJobs(token, { alreadySaved }, saveData) {
+    const supabase = await supabaseClient(token);
+
+    if (alreadySaved) {
+        const { data, error: deleteError } = await supabase
+            .from("saved_jobs")
+            .delete()
+            .eq("job_id", saveData.job_id);
+
+        if (deleteError) {
+            console.error("Error deleting saved jobs: ", deleteError);
+            return null;
+        }
+
+        return data;
+    } else {
+        const { data, error: insertError } = await supabase
+            .from("saved_jobs")
+            .insert([saveData])
+            .select();
+
+        if (insertError) {
+            console.error("Error inserting saved jobs: ", insertError);
+            return null;
+        }
+        return data;
+    }
 }

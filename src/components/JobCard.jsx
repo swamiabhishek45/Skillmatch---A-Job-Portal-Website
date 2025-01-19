@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
 
-import { FaBriefcase, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useFetch from "@/hooks/useFetch";
+import { useUser } from "@clerk/clerk-react";
+import { saveJobs } from "@/api/apiJobs";
+import { Card, CardTitle } from "./ui/card-hover-effect";
+import { PiBag, PiMoney } from "react-icons/pi";
+import { BsFunnel } from "react-icons/bs";
+import { RiTimerLine } from "react-icons/ri";
+import { FiMapPin } from "react-icons/fi";
+import { Bookmark } from "lucide-react";
+import { Button } from "./ui/button";
 
 const JobCard = ({
     job,
@@ -10,85 +19,114 @@ const JobCard = ({
     savedInit = false,
     onJobSaved = () => {},
 }) => {
-    
+    const [saved, setSaved] = useState(savedInit);
+
+    const { user } = useUser();
+
+    const {
+        fn: fnSavedJobs,
+        data: savedJob,
+        loading: loadingSavedJobs,
+    } = useFetch(saveJobs, {
+        alreadySaved: saved,
+    });
+
+    const handleSaveJobs = async () => {
+        await fnSavedJobs({
+            user_id: user.id,
+            job_id: job.id,
+        });
+        onJobSaved();
+    };
+
+    useEffect(() => {
+        if (savedJob !== undefined) setSaved(savedJob?.length > 0);
+    }, [savedJob]);
+
+    // console.log(job);
+
     return (
-        <div className="flex flex-col md:flex-row hover:bg-gray-800 justify-between text-white items-center bg-[#020818] border shadow-lg rounded-lg p-4 gap-4 relative">
-            <Link to={`/job/${job.id}`}>
-                <div className="flex flex-col md:flex-row gap-4">
-                    {/* Job Info and Company Logo */}
-                    <div className="flex gap-2">
-                        {/* Company Logo */}
-                        <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
-                            <img
-                                loading="lazy"
-                                src={job.company.company_logo_url}
-                                alt="Company Logo"
-                                className="rounded-full"
-                            />
+        <Card>
+            {/* job logo */}
+            <div className="flex justify-between">
+                <div className="flex gap-4  items-center">
+                    <img
+                        src={job.company.company_logo_url}
+                        alt="logo"
+                        className="h-20 w-20 rounded-lg"
+                    />
+                    {/* job info  */}
+                    <div className="my-1">
+                        <CardTitle className={`text-xl`}>{job.title}</CardTitle>
+                        <p className="text-slate-300 mb-2">
+                            via{" "}
+                            <span className="text-blue-600 font-semibold">
+                                {job.company.company_name}
+                            </span>
+                        </p>
+                        <div className="grid md:grid-cols-2 space-y-1 text-slate-400 text-sm">
+                            {job.salary ? (
+                                <div className="flex gap-1 items-center">
+                                    <PiMoney />
+                                    {job.salary}
+                                </div>
+                            ) : (
+                                <p>Not Disclosed</p>
+                            )}
+
+                            <div className="flex gap-1 items-center">
+                                <BsFunnel className="" />
+                                {job.category}
+                            </div>
+                            <div className="flex gap-1 items-center">
+                                <PiBag className="" />
+                                {job.job_type}
+                            </div>
+                            <div className="flex gap-1 items-center">
+                                <RiTimerLine className="" />
+                                {job.created_at && (
+                                    <p>
+                                        {formatDistanceToNow(
+                                            new Date(job.created_at),
+                                            {
+                                                addSuffix: true,
+                                            }
+                                        )}
+                                    </p>
+                                )}
+                            </div>
                         </div>
-                        {/* Job Info */}
-                        <div>
-                            <h2 className="text-lg font-semibold">
-                                {job.title}
-                            </h2>
-                            <p>
-                                by{" "}
-                                <span className="font-semibold">
-                                    {job.company.company_name}
-                                </span>{" "}
-                                in{" "}
-                                <span className="text-blue-500">
-                                    {job.category}
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                    {/* Job Tags */}
-                    <div>
-                        <div className="flex flex-wrap gap-2 my-2">
-                            <div className="flex gap-1 p-2 bg-red-800 text-white w-fit rounded-full">
-                                <FaMapMarkerAlt className="mt-[2px]" />
-                                <p className="text-sm">
-                                    {job.candidate_required_location}
-                                </p>
-                            </div>
-                            <div className="flex gap-1 p-2 bg-sky-700 text-white w-fit rounded-full">
-                                <FaBriefcase className="mt-[2px]" />
-                                <p className="text-sm">{job.job_type}</p>
-                            </div>
-                            <div className="flex gap-1 p-2 bg-green-700 text-white w-fit rounded-full">
-                                <p className="text-sm">
-                                    {job.salary ? job.salary : "Not disclosed"}
-                                </p>
-                            </div>
+                        <div className="flex gap-1 items-center text-slate-400 text-sm mt-2">
+                            <FiMapPin className="" />
+                            {job.candidate_required_location}
                         </div>
                     </div>
                 </div>
-            </Link>
-
-            {/* Buttons and Date */}
-            <div className="flex flex-col text-center items-end gap-4 ">
-                <Link to={job.url} target="_blank">
-                    <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg hover:from-blue-400 hover:to-blue-600 shadow-md">
-                        Apply Now
-                    </button>
+                {/* apply button  */}
+            </div>
+            <div className="flex gap-4 items-center mt-5">
+                <Link to={`/job/${job.id}`} className="w-full">
+                    <Button className="w-full bg-slate-800 text-white">
+                        More details
+                    </Button>
                 </Link>
 
-                <div className="">
-                    {job.publication_date && (
-                        <p className="text-sm text-gray-400 ">
-                            Posted{" "}
-                            {formatDistanceToNow(
-                                new Date(job.publication_date),
-                                {
-                                    addSuffix: true,
-                                }
-                            )}
-                        </p>
-                    )}
-                </div>
+                {!isMyJob && (
+                    <Button
+                        variant="outline"
+                        className="w-15"
+                        onClick={handleSaveJobs}
+                        disabled={loadingSavedJobs}
+                    >
+                        {saved ? (
+                            <Bookmark size={24} stroke="white" fill="white" />
+                        ) : (
+                            <Bookmark size={24} />
+                        )}
+                    </Button>
+                )}
             </div>
-        </div>
+        </Card>
     );
 };
 

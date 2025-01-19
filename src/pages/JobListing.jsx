@@ -40,7 +40,13 @@ const JobListing = () => {
             {loadingJobs === false && (
                 <div>
                     {jobs?.length ? (
-                        jobs.map((job) => <JobCard key={job.id} job={job} />)
+                        jobs.map((job) => (
+                            <JobCard
+                                key={job.id}
+                                job={job}
+                                savedInit={job?.saved?.length > 0}
+                            />
+                        ))
                     ) : (
                         <div>No Jobs Found 🥲</div>
                     )}

@@ -48,7 +48,7 @@ const RecentJobs = () => {
             </div>
 
             <div>
-                <ul className="mx-auto max-w-6xl  grid md:grid-cols-2 lg:grid-cols-2 gap-5">
+                <ul className="mx-5 lg:mx-auto max-w-6xl  grid md:grid-cols-2 lg:grid-cols-2 gap-5">
                     {jobs.map((job, index) => (
                         <RemoteJobCard key={index} job={job} />
                     ))}
