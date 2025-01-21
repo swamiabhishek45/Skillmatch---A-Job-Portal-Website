@@ -33,15 +33,14 @@ const JobListing = () => {
 
     // fetching companies
     const { fn: fnCompanies, data: companies } = useFetch(getCompanies);
-    console.log(jobs);
-
-    useEffect(() => {
-        if (isLoaded) fnCompanies();
-    }, [isLoaded]);
 
     useEffect(() => {
         if (isLoaded) fnJobs();
     }, [isLoaded, location, company_id, searchQuery]);
+
+    useEffect(() => {
+        if (isLoaded) fnCompanies();
+    }, [isLoaded]);
 
     const handleSearch = (e) => {
         e.preventDefault();
