@@ -21,7 +21,3 @@ export function formatTimeDifference(isoString) {
         return `${weeks} week${weeks !== 1 ? "s" : ""}`;
     }
 }
-
-// Example usage:
-const formattedTime = formatTimeDifference("2025-01-11T16:34:21.95796+00:00");
-console.log(formattedTime);

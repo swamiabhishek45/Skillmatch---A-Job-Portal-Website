@@ -13,6 +13,7 @@ import Logo from "../assets/placeholder_logo.svg";
 import { formatTimeDifference } from "@/lib/dateFormater";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
+import ShareJob from "@/components/ShareJob";
 
 const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     const [saved, setSaved] = useState(savedInit);
@@ -54,6 +55,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     if (!isLoaded) {
         return <BarLoader width="100%" className="mb-4" color="purple" />;
     }
+
     return (
         <div className="flex flex-col gap-6 my-5 mx-5 xl:mx-auto max-w-5xl md:border md:p-6">
             <div className="flex flex-col-reverse gap-2 md:flex-row justify-between">
@@ -121,21 +123,21 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                 </div>
             </div>
             <div className="flex gap-2">
-                {formatTimeDifference(job?.created_at).includes("day") ? (
-                    <div className="flex gap-1 items-center bg-[#15410c] text-green-300 w-fit p-1 rounded-md text-xs">
-                        <GiBackwardTime className="text-xl size-4" />
+                {formatTimeDifference(job?.created_at).includes("week") ? (
+                    <div className="flex gap-1 items-center bg-[#13466b] text-blue-300  w-fit p-1 rounded-md text-xs">
+                        <GiBackwardTime className="text-xl  size-4" />
                         <p className="">
                             Posted {formatTimeDifference(job?.created_at)} ago
                         </p>
                     </div>
                 ) : (
-                    <div className="flex gap-1 items-center bg-[#13466b] text-blue-300 w-fit p-1 rounded-md text-xs">
+                    <div className="flex gap-1 items-center bg-[#15410c] text-green-300  w-fit p-1 rounded-md text-xs">
                         <GiBackwardTime className="text-xl size-4" />
                         <p className="">
                             Posted {formatTimeDifference(job?.created_at)} ago
                         </p>
                     </div>
-                )}{" "}
+                )}
                 <p className="text-xs text-slate-200 bg-gray-600 p-1 rounded-md">
                     {job?.job_type}
                 </p>
@@ -149,28 +151,33 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         <p>{job?.applications?.length} Applicants</p>
                     )}
                 </div>
-                <div>
-                    {!isMyJob && (
-                        <Button
-                            variant="outline"
-                            className="w-15"
-                            onClick={handleSaveJobs}
-                            disabled={loadingSavedJobs}
-                        >
-                            {saved ? (
-                                <Bookmark
-                                    size={24}
-                                    stroke="white"
-                                    fill="white"
-                                />
-                            ) : (
-                                <Bookmark size={24} />
-                            )}
-                        </Button>
-                    )}
+                <div className="flex gap-2">
+                    <div>
+                        {!isMyJob && (
+                            <Button
+                                variant="outline"
+                                className="w-15"
+                                onClick={handleSaveJobs}
+                                disabled={loadingSavedJobs}
+                            >
+                                {saved ? (
+                                    <Bookmark
+                                        size={24}
+                                        stroke="white"
+                                        fill="white"
+                                    />
+                                ) : (
+                                    <Bookmark size={24} />
+                                )}
+                            </Button>
+                        )}
+                    </div>
+                    <Button variant="outline" className="w-15">
+                        <ShareJob job={job} />
+                    </Button>
                 </div>
             </div>
-            <hr />
+            <hr className="border-1 border-gray-400" />
             {/* hiring status */}
             <h2 className="text-2xl md:text-3xl font-semibold">
                 About the job
@@ -182,7 +189,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
             </h2>
             <MDEditor.Markdown
                 source={job?.requirements}
-                className="bg-transparent sm:text-lg"
+                style={{ background: "transparent" }}
             />
 
             {/* render applications  */}

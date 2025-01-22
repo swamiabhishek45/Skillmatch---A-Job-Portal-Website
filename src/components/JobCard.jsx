@@ -21,32 +21,31 @@ const JobCard = ({
     savedInit = false,
     onJobSaved = () => {},
 }) => {
-    const [saved, setSaved] = useState(savedInit);
+    // const [saved, setSaved] = useState(savedInit);
 
-    const { user } = useUser();
+    // const { user } = useUser();
 
-    const {
-        fn: fnSavedJobs,
-        data: savedJob,
-        loading: loadingSavedJobs,
-    } = useFetch(saveJobs, {
-        alreadySaved: saved,
-    });
-    console.log(job);
+    // const {
+    //     fn: fnSavedJobs,
+    //     data: savedJob,
+    //     loading: loadingSavedJobs,
+    // } = useFetch(saveJobs, {
+    //     alreadySaved: saved,
+    // });
 
-    const handleSaveJobs = async () => {
-        await fnSavedJobs({
-            user_id: user.id,
-            job_id: job.id,
-        });
-        onJobSaved();
-    };
+    // const handleSaveJobs = async () => {
+    //     await fnSavedJobs({
+    //         user_id: user.id,
+    //         job_id: job.id,
+    //     });
+    //     onJobSaved();
+    // };
 
-    useEffect(() => {
-        if (savedJob !== undefined) setSaved(savedJob?.length > 0);
-    }, [savedJob]);
+    // useEffect(() => {
+    //     if (savedJob !== undefined) setSaved(savedJob?.length > 0);
+    // }, [savedJob]);
 
-    // console.log(job);
+    // // console.log(job);
 
     return (
         <Link to={`/job/${job.id}`}>
