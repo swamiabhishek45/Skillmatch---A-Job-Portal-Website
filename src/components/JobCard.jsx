@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { formatDistanceToNow } from "date-fns";
-
 import { Link } from "react-router-dom";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
@@ -34,6 +32,7 @@ const JobCard = ({
     } = useFetch(saveJobs, {
         alreadySaved: saved,
     });
+    console.log(job);
 
     const handleSaveJobs = async () => {
         await fnSavedJobs({

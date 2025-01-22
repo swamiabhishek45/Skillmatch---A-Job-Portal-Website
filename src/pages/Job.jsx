@@ -1,7 +1,7 @@
-import { getSingleJob } from "@/api/apiJobs";
+import { getSingleJob, saveJobs } from "@/api/apiJobs";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BarLoader } from "react-spinners";
 import { GiBackwardTime } from "react-icons/gi";
@@ -12,8 +12,10 @@ import { TbUsers } from "react-icons/tb";
 import Logo from "../assets/placeholder_logo.svg";
 import { formatTimeDifference } from "@/lib/dateFormater";
 import MDEditor from "@uiw/react-md-editor";
+import { Button } from "@/components/ui/button";
 
-const Job = () => {
+const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
+    const [saved, setSaved] = useState(savedInit);
     const { user, isLoaded } = useUser();
     const { id } = useParams();
 
@@ -24,7 +26,26 @@ const Job = () => {
     } = useFetch(getSingleJob, {
         job_id: id,
     });
-    console.log(job);
+
+    const {
+        fn: fnSavedJobs,
+        data: savedJob,
+        loading: loadingSavedJobs,
+    } = useFetch(saveJobs, {
+        alreadySaved: saved,
+    });
+
+    const handleSaveJobs = async () => {
+        await fnSavedJobs({
+            user_id: user.id,
+            job_id: job.id,
+        });
+        onJobSaved();
+    };
+
+    useEffect(() => {
+        if (savedJob !== undefined) setSaved(savedJob?.length > 0);
+    }, [savedJob]);
 
     useEffect(() => {
         if (isLoaded) fnJob();
@@ -119,13 +140,35 @@ const Job = () => {
                     {job?.job_type}
                 </p>
             </div>
-            <div className="flex gap-1 items-center">
-                <TbUsers />
-                {job?.applications?.length < 2 ? (
-                    <p>{job?.applications?.length} Applicant</p>
-                ) : (
-                    <p>{job?.applications?.length} Applicants</p>
-                )}
+            <div className="flex justify-between">
+                <div className="flex gap-1 items-center">
+                    <TbUsers />
+                    {job?.applications?.length < 2 ? (
+                        <p>{job?.applications?.length} Applicant</p>
+                    ) : (
+                        <p>{job?.applications?.length} Applicants</p>
+                    )}
+                </div>
+                <div>
+                    {!isMyJob && (
+                        <Button
+                            variant="outline"
+                            className="w-15"
+                            onClick={handleSaveJobs}
+                            disabled={loadingSavedJobs}
+                        >
+                            {saved ? (
+                                <Bookmark
+                                    size={24}
+                                    stroke="white"
+                                    fill="white"
+                                />
+                            ) : (
+                                <Bookmark size={24} />
+                            )}
+                        </Button>
+                    )}
+                </div>
             </div>
             <hr />
             {/* hiring status */}
