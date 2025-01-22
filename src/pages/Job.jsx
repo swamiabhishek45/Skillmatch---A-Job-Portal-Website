@@ -11,6 +11,7 @@ import { FaRupeeSign } from "react-icons/fa";
 import { TbUsers } from "react-icons/tb";
 import Logo from "../assets/placeholder_logo.svg";
 import { formatTimeDifference } from "@/lib/dateFormater";
+import MDEditor from "@uiw/react-md-editor";
 
 const Job = () => {
     const { user, isLoaded } = useUser();
@@ -98,20 +99,22 @@ const Job = () => {
                     {job?.salary}
                 </div>
             </div>
-            <div className="flex  gap-2">
-                <div className="flex gap-1 items-center bg-[#15410c] text-green-300 w-fit p-1 rounded-md text-xs">
-                    <GiBackwardTime className="text-xl size-4" />
-                    {formatTimeDifference(job?.created_at) > "1 week" ? (
+            <div className="flex gap-2">
+                {formatTimeDifference(job?.created_at).includes("day") ? (
+                    <div className="flex gap-1 items-center bg-[#15410c] text-green-300 w-fit p-1 rounded-md text-xs">
+                        <GiBackwardTime className="text-xl size-4" />
                         <p className="">
                             Posted {formatTimeDifference(job?.created_at)} ago
                         </p>
-                    ) : (
+                    </div>
+                ) : (
+                    <div className="flex gap-1 items-center bg-[#13466b] text-blue-300 w-fit p-1 rounded-md text-xs">
+                        <GiBackwardTime className="text-xl size-4" />
                         <p className="">
                             Posted {formatTimeDifference(job?.created_at)} ago
                         </p>
-                    )}{" "}
-                </div>
-
+                    </div>
+                )}{" "}
                 <p className="text-xs text-slate-200 bg-gray-600 p-1 rounded-md">
                     {job?.job_type}
                 </p>
@@ -126,10 +129,20 @@ const Job = () => {
             </div>
             <hr />
             {/* hiring status */}
-            <h2 className="text-3xl font-semibold">About the job</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold">
+                About the job
+            </h2>
             <p>{job?.description}</p>
-            <h2 className="text-3xl font-semibold">About the job</h2>
-            <p>{job?.description}</p>
+
+            <h2 className="text-2xl md:text-3xl  font-semibold">
+                About the job
+            </h2>
+            <MDEditor.Markdown
+                source={job?.requirements}
+                className="bg-transparent sm:text-lg"
+            />
+
+            {/* render applications  */}
         </div>
     );
 };

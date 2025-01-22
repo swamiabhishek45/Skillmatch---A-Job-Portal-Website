@@ -141,13 +141,19 @@ const JobListing = () => {
             {loadingJobs === false && (
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-5">
                     {jobs?.length ? (
-                        jobs.map((job) => (
-                            <JobCard
-                                key={job.id}
-                                job={job}
-                                savedInit={job?.saved?.length > 0}
-                            />
-                        ))
+                        jobs
+                            .sort(
+                                (a, b) =>
+                                    new Date(b.created_at) -
+                                    new Date(a.created_at)
+                            )
+                            .map((job) => (
+                                <JobCard
+                                    key={job.id}
+                                    job={job}
+                                    savedInit={job?.saved?.length > 0}
+                                />
+                            ))
                     ) : (
                         <div>No Jobs Found 🥲</div>
                     )}
