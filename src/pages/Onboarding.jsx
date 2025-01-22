@@ -3,6 +3,8 @@ import { useUser } from "@clerk/clerk-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
+import { FaUserTie } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 
 const Onboarding = () => {
     const { user, isLoaded } = useUser();
@@ -34,7 +36,7 @@ const Onboarding = () => {
     if (!isLoaded) {
         return <BarLoader width="100%" className="mb-4" color="purple" />;
     }
-    
+
     return (
         <div className="flex justify-center items-center mt-40 flex-col">
             <h2 className="text-7xl sm:text-8xl font-extrabold poppins">
@@ -42,16 +44,18 @@ const Onboarding = () => {
             </h2>
             <div className="grid grid-cols-2 md:px-40  mt-16">
                 <Button
-                    className="text-4xl p-10 mx-5 bg-blue-800 hover:bg-blue-700 text-white"
+                    className="text-4xl flex gap-2 p-10 mx-5 bg-blue-800 hover:bg-blue-700 text-white"
                     onClick={() => handleRoleSelection("candidate")}
                 >
+                    <FaUserTie />
                     Candidate
                 </Button>
                 <Button
-                    className="text-4xl p-10 mx-5"
+                    className="text-4xl flex gap-2 p-10 mx-5"
                     variant="destructive"
                     onClick={() => handleRoleSelection("recruiter")}
                 >
+                    <FaBuilding />
                     Recruiter
                 </Button>
             </div>

@@ -12,6 +12,9 @@ import { RiTimerLine } from "react-icons/ri";
 import { FiMapPin } from "react-icons/fi";
 import { Bookmark } from "lucide-react";
 import { Button } from "./ui/button";
+import { FaRupeeSign } from "react-icons/fa";
+import { GiBackwardTime } from "react-icons/gi";
+import Logo from "../assets/placeholder_logo.svg";
 
 const JobCard = ({
     job,
@@ -51,7 +54,11 @@ const JobCard = ({
             <div className="flex justify-between">
                 <div className="flex gap-4  items-center">
                     <img
-                        src={job.company.company_logo_url}
+                        src={
+                            job.company.company_logo_url
+                                ? job.company.company_logo_url
+                                : Logo
+                        }
                         alt="logo"
                         className="h-20 w-20 rounded-lg"
                     />
@@ -67,7 +74,7 @@ const JobCard = ({
                         <div className="grid md:grid-cols-2 space-y-1 text-slate-400 text-sm">
                             {job.salary ? (
                                 <div className="flex gap-1 items-center">
-                                    <PiMoney />
+                                    <FaRupeeSign />
                                     {job.salary}
                                 </div>
                             ) : (
@@ -83,7 +90,7 @@ const JobCard = ({
                                 {job.job_type}
                             </div>
                             <div className="flex gap-1 items-center">
-                                <RiTimerLine className="" />
+                                <GiBackwardTime className="text-xl" />
                                 {job.created_at && (
                                     <p>
                                         {formatDistanceToNow(

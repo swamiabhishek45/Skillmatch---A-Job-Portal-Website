@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
-import { State } from "country-state-city";
+import { State, City } from "country-state-city";
 import { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 
