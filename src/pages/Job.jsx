@@ -1,14 +1,14 @@
-import { getSingleJob, saveJobs } from "@/api/apiJobs";
+import { getSingleJob, saveJobs, updateHiringStatus } from "@/api/apiJobs";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BarLoader } from "react-spinners";
 import { GiBackwardTime } from "react-icons/gi";
-import { FiMapPin } from "react-icons/fi";
-import { Bookmark, DoorClosed, DoorOpen } from "lucide-react";
+import { FiClock, FiMapPin } from "react-icons/fi";
+import { Bookmark, DoorClosed, DoorOpen, PlayCircle } from "lucide-react";
 import { FaRupeeSign } from "react-icons/fa";
-import { TbUsers } from "react-icons/tb";
+import { TbCategory, TbUsers } from "react-icons/tb";
 import Logo from "../assets/placeholder_logo.svg";
 import { formatTimeDifference } from "@/lib/dateFormater";
 import MDEditor from "@uiw/react-md-editor";
@@ -35,6 +35,18 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     } = useFetch(saveJobs, {
         alreadySaved: saved,
     });
+
+    const { fn: fnHiringStatus, loading: loadingHiringStatus } = useFetch(
+        updateHiringStatus,
+        {
+            job_id: id,
+        }
+    );
+
+    const handlestatusChange = (value) => {
+        const isOpen = value === "open";
+        fnHiringStatus(isOpen).then(() => fnJob());
+    };
 
     const handleSaveJobs = async () => {
         await fnSavedJobs({
@@ -104,8 +116,8 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 ">
                 <div className="flex gap-1 items-center">
-                    <FaRupeeSign />
-                    {job?.salary}
+                    <PlayCircle size={18} />
+                    Start Immediately
                 </div>
 
                 <div className="flex gap-1 items-center">
@@ -113,13 +125,12 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     {job?.salary}
                 </div>
                 <div className="flex gap-1 items-center">
-                    <FaRupeeSign />
-                    {job?.salary}
+                    <FiClock />
+                    {job?.experience}
                 </div>
-
                 <div className="flex gap-1 items-center">
-                    <FaRupeeSign />
-                    {job?.salary}
+                    <TbCategory />
+                    Product and Design
                 </div>
             </div>
             <div className="flex gap-2">
@@ -185,7 +196,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
             <p>{job?.description}</p>
 
             <h2 className="text-2xl md:text-3xl  font-semibold">
-                About the job
+                Job Requirements
             </h2>
             <MDEditor.Markdown
                 source={job?.requirements}

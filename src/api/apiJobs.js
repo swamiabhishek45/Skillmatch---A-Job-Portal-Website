@@ -83,14 +83,12 @@ export async function updateHiringStatus(token, { job_id }, isOpen) {
 
     const { data, error } = await supabase
         .from("jobs")
-        .select(
-            "*, company:companies(company_name, company_logo_url), applications: applications(*)"
-        )
+        .update({isOpen})
         .eq("id", job_id)
-        .single();
+        .select();
 
     if (error) {
-        console.error("Error fetching a job: ", error);
+        console.error("Error updating job", error);
         return null;
     }
     return data;

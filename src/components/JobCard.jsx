@@ -7,7 +7,7 @@ import { Card, CardTitle } from "./ui/card-hover-effect";
 import { PiBag, PiMoney } from "react-icons/pi";
 import { BsFunnel } from "react-icons/bs";
 import { RiTimerLine } from "react-icons/ri";
-import { FiMapPin } from "react-icons/fi";
+import { FiClock, FiMapPin } from "react-icons/fi";
 import { Bookmark } from "lucide-react";
 import { Button } from "./ui/button";
 import { FaRupeeSign } from "react-icons/fa";
@@ -94,7 +94,7 @@ const JobCard = ({
                             {job.job_type}
                         </div>{" "}
                         <div className="flex gap-1 items-center">
-                            <BsFunnel className="" />
+                            <FiClock className="" />
                             {job.experience}
                         </div>
                         {formatTimeDifference(job?.created_at).includes(
