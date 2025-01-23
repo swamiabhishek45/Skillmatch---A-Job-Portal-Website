@@ -14,6 +14,7 @@ import { formatTimeDifference } from "@/lib/dateFormater";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
 import ShareJob from "@/components/ShareJob";
+import ApplyJobDrawer from "@/components/ApplyJobDrawer";
 
 const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     const [saved, setSaved] = useState(savedInit);
@@ -35,6 +36,9 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     } = useFetch(saveJobs, {
         alreadySaved: saved,
     });
+
+    console.log(job, user);
+    
 
     const { fn: fnHiringStatus, loading: loadingHiringStatus } = useFetch(
         updateHiringStatus,
@@ -209,7 +213,16 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
             />
 
             {/* render applications  */}
-            {job?.recruiter_id !== user?.id}
+            {job?.recruiter_id !== user?.id && (
+                <ApplyJobDrawer
+                    job={job}
+                    user={user}
+                    fetchJob={fnJob}
+                    applied={job?.applications?.find(
+                        (app) => app.candidate_id === user.id
+                    )}
+                />
+            )}
         </div>
     );
 };
