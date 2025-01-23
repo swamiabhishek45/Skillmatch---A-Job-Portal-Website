@@ -70,6 +70,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
 
     return (
         <div className="flex flex-col gap-6 my-5 mx-5 xl:mx-auto max-w-5xl md:border md:p-6">
+            {/* Job title and logo  */}
             <div className="flex flex-col-reverse gap-2 md:flex-row justify-between">
                 <div>
                     <div className="flex items-center gap-4">
@@ -109,11 +110,12 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     alt="logo"
                 />
             </div>
+            {/* job location  */}
             <div className="flex gap-1 items-center">
                 <FiMapPin />
                 {job?.candidate_required_location}
             </div>
-
+            {/* job tags  */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 ">
                 <div className="flex gap-1 items-center">
                     <PlayCircle size={18} />
@@ -133,6 +135,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     Product and Design
                 </div>
             </div>
+            {/* job created at and type */}
             <div className="flex gap-2">
                 {formatTimeDifference(job?.created_at).includes("week") ? (
                     <div className="flex gap-1 items-center bg-[#13466b] text-blue-300  w-fit p-1 rounded-md text-xs">
@@ -153,6 +156,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     {job?.job_type}
                 </p>
             </div>
+            {/* applicants | bookmark | share  */}
             <div className="flex justify-between">
                 <div className="flex gap-1 items-center">
                     <TbUsers />
@@ -189,7 +193,8 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                 </div>
             </div>
             <hr className="border-1 border-gray-400" />
-            {/* hiring status */}
+            {/* TODO: hiring status */}
+            {/* Job description  */}
             <h2 className="text-2xl md:text-3xl font-semibold">
                 About the job
             </h2>
@@ -204,6 +209,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
             />
 
             {/* render applications  */}
+            {job?.recruiter_id !== user?.id}
         </div>
     );
 };
