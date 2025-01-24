@@ -7,6 +7,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
+import { Button } from "./ui/button";
 
 const ShareJob = ({ job }) => {
     const [currentUrl, setCurrentUrl] = useState("");
@@ -16,7 +17,7 @@ const ShareJob = ({ job }) => {
     }, []);
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(currentUrl)
+        navigator.clipboard.writeText(currentUrl);
     };
 
     const shareOnLinkedIn = () => {
@@ -46,8 +47,9 @@ const ShareJob = ({ job }) => {
         <div className="flex gap-2">
             <Popover>
                 <PopoverTrigger>
-                    <RiShareFill />
-                    
+                    <Button variant="outline" className="w-15">
+                        <RiShareFill />
+                    </Button>
                 </PopoverTrigger>
                 <PopoverContent className="flex flex-col gap-2 ">
                     <div className="flex justify-evenly">
