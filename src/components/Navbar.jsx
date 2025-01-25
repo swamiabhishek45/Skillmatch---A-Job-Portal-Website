@@ -37,8 +37,8 @@ const Navbar = () => {
                     {/* Logo */}
                     <div className="flex items-center">
                         <Link to="/">
-                            <span className="roboto-slab text-2xl md:text-3xl font-bold text-purple-500">
-                                remotely
+                            <span className="roboto-slab text-xl md:text-3xl font-bold text-purple-500">
+                                B. E. ROZGAAR
                             </span>
                         </Link>
                     </div>
