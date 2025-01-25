@@ -38,7 +38,7 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <Link to="/">
                             <span className="roboto-slab text-xl md:text-3xl font-bold text-purple-500">
-                                B. E. ROZGAAR
+                                Talentify
                             </span>
                         </Link>
                     </div>
