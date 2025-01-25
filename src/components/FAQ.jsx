@@ -10,28 +10,29 @@ const FAQ = () => {
     const data = [
         {
             id: 1,
-            question: "What is the capital of France?",
-            answer: "The capital of France is Paris.",
+            question: "How do I find jobs on Talentify?",
+            answer: "Create an Account: Sign up on Talentify and complete your profile with details about your skills, experience, and preferences. Search for Jobs: Use the search bar to filter jobs by keywords, location, or category.",
         },
         {
             id: 2,
-            question: "What is the largest planet in our solar system?",
-            answer: "The largest planet in our solar system is Jupiter.",
+            question: "How do I create an recruiter account with Talentify?",
+            answer: "Creating an account with Talentify is simple. You can start by posting your first job and authenticate your email using OTP.",
         },
         {
             id: 3,
-            question: "Who wrote the play 'Romeo and Juliet'?",
-            answer: "The play 'Romeo and Juliet' was written by William Shakespeare.",
+            question: "How do I start hiring from Workindia?",
+            answer: "Hiring from Workindia is easy and quick. Just follow these steps : - Post a Job  akes less than 5 minutes and Register via OTP - Choose your hiring plan and pay - Get verified our team will get in touch Candidates will start contacting you immediately after successful verification.",
         },
         {
             id: 4,
-            question: "What is the chemical symbol for water?",
-            answer: "The chemical symbol for water is H2O.",
+            question:
+                "How does Talentify ensure that only Candidates matching the job criteria contact me?",
+            answer: "Our matching algorithm filters through our candidate database to display the job post only to the Candidates matching your job requirement, making the whole process quick, easy, and convenient.",
         },
         {
             id: 5,
-            question: "What is the speed of light?",
-            answer: "The speed of light is approximately 299,792 kilometers per second.",
+            question: "In which cities can I hire via Talentify?",
+            answer: "You can post jobs and hire quickly via Talentify in 750+ cities across India including Mumbai, Delhi & NCR, Bengaluru, Pune.",
         },
     ];
     return (
@@ -43,9 +44,13 @@ const FAQ = () => {
             <Accordion type="single" collapsible className=" max-w-6xl m-auto">
                 {data.map((faq) => (
                     <AccordionItem value={`index-${faq.id}`} key={faq.id}>
-                        <div className="bg-[#0e1728] my-5 px-5 rounded-md">
-                            <AccordionTrigger>{faq.question}</AccordionTrigger>
-                            <AccordionContent>{faq.answer}</AccordionContent>
+                        <div className="bg-[#0e1728] my-5  px-5 rounded-md">
+                            <AccordionTrigger className="text-start">
+                                {faq.question}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-start">
+                                {faq.answer}
+                            </AccordionContent>
                         </div>
                     </AccordionItem>
                 ))}
