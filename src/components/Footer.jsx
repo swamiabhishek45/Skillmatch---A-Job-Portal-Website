@@ -28,10 +28,12 @@ const Footer = () => {
                                     frameborder="0"
                                     scrolling="no"
                                 ></iframe>
+
+                                {/* Socials  */}
                                 <div class="flex mt-6 space-x-3">
                                     <a
-                                        aria-label="Email Featurebase"
-                                        href="mailto:support@featurebase.app"
+                                        aria-label="Email Talentify"
+                                        href="mailto:abhishekswami1435@gmail.com"
                                         class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                     >
                                         <svg
@@ -45,13 +47,12 @@ const Footer = () => {
                                         </svg>
                                     </a>
                                     <a
-                                        aria-label="Featurebase LinkedIn Link"
-                                        href="https://www.linkedin.com/company/featurebaseapp/"
+                                        aria-label="Talentify LinkedIn Link"
+                                        href="https://www.linkedin.com/in/swamiabhishek45/"
                                         target="_blank"
-                                        rel="noreferrer"
                                     >
                                         <button
-                                            aria-label="Featurebase LinkedIn Link"
+                                            aria-label="Talentify LinkedIn Link"
                                             class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                         >
                                             <svg
@@ -69,13 +70,11 @@ const Footer = () => {
                                         </button>
                                     </a>
                                     <a
-                                        aria-label="Featurebase Twitter Link"
-                                        href="https://twitter.com/FeaturebaseHQ"
+                                        aria-label="Talentify Twitter Link"
+                                        href="https://x.com/swamiabhishek45"
                                         target="_blank"
-                                        rel="noreferrer"
                                     >
                                         <button
-                                            aria-label="Featurebase Twitter Link"
                                             class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                         >
                                             <div>
@@ -94,13 +93,12 @@ const Footer = () => {
                                         </button>
                                     </a>
                                     <a
-                                        aria-label="Featurebase Community Link"
-                                        href="https://discord.com/invite/9wFwqHW4HZ"
+                                        aria-label="Talentify Community Link"
+                                        href="https://discord.com/"
                                         target="_blank"
-                                        rel="noreferrer"
                                     >
                                         <button
-                                            aria-label="Featurebase Community Link"
+                                            aria-label="Talentify Community Link"
                                             class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                         >
                                             <svg
@@ -201,30 +199,7 @@ const Footer = () => {
                                                     UserVoice
                                                 </a>
                                             </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/productboard"
-                                                >
-                                                    Productboard
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/upvoty"
-                                                >
-                                                    Upvoty
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/nolt"
-                                                >
-                                                    Nolt
-                                                </a>
-                                            </li>
+                                            
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
@@ -250,100 +225,11 @@ const Footer = () => {
                                                     href="https://help.featurebase.app/"
                                                 >
                                                     Help Center{" "}
-                                                    <div class="items-center justify-center text-indigo-400/60 inline-block h-3 w-3 cursor-help">
-                                                        <svg
-                                                            class="inline-block w-3 h-3 ml-1 text-indigo-400 dark:text-indigo-400/60"
-                                                            viewBox="0 0 22 22"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <g clip-path="url(#clip0_746_218)">
-                                                                <path
-                                                                    d="M19.1064 5.83416C20.158 6.56113 20.9798 7.5734 21.4753 8.75178C21.9708 9.93015 22.1194 11.2256 21.9034 12.4855C21.6875 13.7455 21.1159 14.9175 20.2564 15.8636C19.3966 16.8096 18.2845 17.4905 17.051 17.8257C16.5252 17.966 15.9676 17.9289 15.4649 17.7204C14.9622 17.5117 14.5422 17.1434 14.27 16.6719C13.9978 16.2007 13.8887 15.6527 13.9593 15.113C14.03 14.5733 14.2765 14.072 14.6609 13.6866L16.5655 11.7805C17.3635 10.9869 17.983 10.0324 18.3831 8.98044C18.783 7.92853 18.954 6.80343 18.8848 5.68018C18.954 5.73046 19.031 5.78073 19.1064 5.83416Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M5.83416 2.89086C6.56162 1.83999 7.57408 1.01873 8.75243 0.523713C9.93076 0.0286976 11.226 -0.11949 12.4857 0.0965962C13.7454 0.312681 14.9172 0.884048 15.8633 1.74347C16.8093 2.6029 17.49 3.71462 17.8257 4.94786C17.9671 5.47402 17.9308 6.0321 17.7226 6.53556C17.5144 7.03903 17.1459 7.45973 16.6743 7.73243C16.2027 8.00514 15.6542 8.11461 15.114 8.04386C14.5738 7.97311 14.0721 7.7261 13.6866 7.34115L11.782 5.43658C10.9869 4.64077 10.0321 4.02268 8.98054 3.62315C7.92898 3.2236 6.80464 3.05167 5.68173 3.11872C5.73045 3.04329 5.7823 2.96629 5.83416 2.89086Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M2.89086 16.1631C1.83999 15.4357 1.01873 14.4232 0.523713 13.2449C0.0286976 12.0665 -0.11949 10.7713 0.0965962 9.51164C0.312681 8.25193 0.884028 7.08015 1.74345 6.13414C2.60287 5.18812 3.71461 4.50723 4.94785 4.17159C5.47456 4.02776 6.03405 4.06225 6.53911 4.2697C7.04416 4.47713 7.46641 4.84585 7.73998 5.31836C8.01353 5.79087 8.12306 6.34062 8.0515 6.8819C7.97992 7.42318 7.73126 7.92556 7.34428 8.31074L5.43972 10.2153C5.17872 10.4773 4.93564 10.7566 4.71213 11.0513C3.57219 12.5614 3.00831 14.4285 3.12186 16.3171C3.04486 16.2668 2.96786 16.2165 2.89086 16.1631Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M16.1648 19.1064C15.4374 20.1578 14.4249 20.9795 13.2463 21.4748C12.0678 21.9701 10.7722 22.1185 9.51222 21.9024C8.2522 21.6862 7.08014 21.1147 6.134 20.2549C5.18786 19.3952 4.50702 18.2831 4.1716 17.0494C4.02861 16.5228 4.06372 15.9635 4.27149 15.4588C4.47927 14.9541 4.84802 14.5323 5.32039 14.2589C5.79276 13.9855 6.34227 13.876 6.88338 13.9472C7.42449 14.0185 7.92685 14.2666 8.31233 14.653L10.2169 16.5575C10.4778 16.8198 10.7572 17.063 11.0529 17.2851C12.562 18.4258 14.429 18.9898 16.3172 18.8754C16.2685 18.9524 16.2167 19.0309 16.1648 19.1064Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_746_218">
-                                                                    <rect
-                                                                        width="22"
-                                                                        height="22"
-                                                                        fill="white"
-                                                                    ></rect>
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>
+                                                    
                                                 </a>
                                             </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://help.featurebase.app/collections/8270391-developers"
-                                                >
-                                                    Developer Docs{" "}
-                                                    <div class="items-center justify-center text-indigo-400/60 inline-block h-3 w-3 cursor-help">
-                                                        <svg
-                                                            class="inline-block w-3 h-3 ml-1 text-indigo-400 dark:text-indigo-400/60"
-                                                            viewBox="0 0 22 22"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <g clip-path="url(#clip0_746_218)">
-                                                                <path
-                                                                    d="M19.1064 5.83416C20.158 6.56113 20.9798 7.5734 21.4753 8.75178C21.9708 9.93015 22.1194 11.2256 21.9034 12.4855C21.6875 13.7455 21.1159 14.9175 20.2564 15.8636C19.3966 16.8096 18.2845 17.4905 17.051 17.8257C16.5252 17.966 15.9676 17.9289 15.4649 17.7204C14.9622 17.5117 14.5422 17.1434 14.27 16.6719C13.9978 16.2007 13.8887 15.6527 13.9593 15.113C14.03 14.5733 14.2765 14.072 14.6609 13.6866L16.5655 11.7805C17.3635 10.9869 17.983 10.0324 18.3831 8.98044C18.783 7.92853 18.954 6.80343 18.8848 5.68018C18.954 5.73046 19.031 5.78073 19.1064 5.83416Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M5.83416 2.89086C6.56162 1.83999 7.57408 1.01873 8.75243 0.523713C9.93076 0.0286976 11.226 -0.11949 12.4857 0.0965962C13.7454 0.312681 14.9172 0.884048 15.8633 1.74347C16.8093 2.6029 17.49 3.71462 17.8257 4.94786C17.9671 5.47402 17.9308 6.0321 17.7226 6.53556C17.5144 7.03903 17.1459 7.45973 16.6743 7.73243C16.2027 8.00514 15.6542 8.11461 15.114 8.04386C14.5738 7.97311 14.0721 7.7261 13.6866 7.34115L11.782 5.43658C10.9869 4.64077 10.0321 4.02268 8.98054 3.62315C7.92898 3.2236 6.80464 3.05167 5.68173 3.11872C5.73045 3.04329 5.7823 2.96629 5.83416 2.89086Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M2.89086 16.1631C1.83999 15.4357 1.01873 14.4232 0.523713 13.2449C0.0286976 12.0665 -0.11949 10.7713 0.0965962 9.51164C0.312681 8.25193 0.884028 7.08015 1.74345 6.13414C2.60287 5.18812 3.71461 4.50723 4.94785 4.17159C5.47456 4.02776 6.03405 4.06225 6.53911 4.2697C7.04416 4.47713 7.46641 4.84585 7.73998 5.31836C8.01353 5.79087 8.12306 6.34062 8.0515 6.8819C7.97992 7.42318 7.73126 7.92556 7.34428 8.31074L5.43972 10.2153C5.17872 10.4773 4.93564 10.7566 4.71213 11.0513C3.57219 12.5614 3.00831 14.4285 3.12186 16.3171C3.04486 16.2668 2.96786 16.2165 2.89086 16.1631Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M16.1648 19.1064C15.4374 20.1578 14.4249 20.9795 13.2463 21.4748C12.0678 21.9701 10.7722 22.1185 9.51222 21.9024C8.2522 21.6862 7.08014 21.1147 6.134 20.2549C5.18786 19.3952 4.50702 18.2831 4.1716 17.0494C4.02861 16.5228 4.06372 15.9635 4.27149 15.4588C4.47927 14.9541 4.84802 14.5323 5.32039 14.2589C5.79276 13.9855 6.34227 13.876 6.88338 13.9472C7.42449 14.0185 7.92685 14.2666 8.31233 14.653L10.2169 16.5575C10.4778 16.8198 10.7572 17.063 11.0529 17.2851C12.562 18.4258 14.429 18.9898 16.3172 18.8754C16.2685 18.9524 16.2167 19.0309 16.1648 19.1064Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_746_218">
-                                                                    <rect
-                                                                        width="22"
-                                                                        height="22"
-                                                                        fill="white"
-                                                                    ></rect>
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://docs.featurebase.app/"
-                                                >
-                                                    API Docs
-                                                </a>
-                                            </li>
+                                            
+                                            
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
@@ -352,24 +238,8 @@ const Footer = () => {
                                                     Use Cases
                                                 </a>
                                             </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/customers"
-                                                >
-                                                    Customers
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://help.featurebase.app/articles/8874192-gdpr-compliance"
-                                                >
-                                                    DPA &amp; GDPR
-                                                </a>
-                                            </li>
+                                           
+                                            
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
@@ -386,16 +256,7 @@ const Footer = () => {
                                                     Terms of Service
                                                 </a>
                                             </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://status.featurebase.app/"
-                                                >
-                                                    System Status
-                                                </a>
-                                            </li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="mt-12 md:mt-0">
@@ -411,102 +272,7 @@ const Footer = () => {
                                                     About Us
                                                 </a>
                                             </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/pricing"
-                                                >
-                                                    Pricing
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/changelog"
-                                                >
-                                                    Our Changelog{" "}
-                                                    <div class="items-center justify-center text-indigo-400/60 inline-block h-3 w-3 cursor-help">
-                                                        <svg
-                                                            class="inline-block w-3 h-3 ml-1 text-indigo-400 dark:text-indigo-400/60"
-                                                            viewBox="0 0 22 22"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <g clip-path="url(#clip0_746_218)">
-                                                                <path
-                                                                    d="M19.1064 5.83416C20.158 6.56113 20.9798 7.5734 21.4753 8.75178C21.9708 9.93015 22.1194 11.2256 21.9034 12.4855C21.6875 13.7455 21.1159 14.9175 20.2564 15.8636C19.3966 16.8096 18.2845 17.4905 17.051 17.8257C16.5252 17.966 15.9676 17.9289 15.4649 17.7204C14.9622 17.5117 14.5422 17.1434 14.27 16.6719C13.9978 16.2007 13.8887 15.6527 13.9593 15.113C14.03 14.5733 14.2765 14.072 14.6609 13.6866L16.5655 11.7805C17.3635 10.9869 17.983 10.0324 18.3831 8.98044C18.783 7.92853 18.954 6.80343 18.8848 5.68018C18.954 5.73046 19.031 5.78073 19.1064 5.83416Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M5.83416 2.89086C6.56162 1.83999 7.57408 1.01873 8.75243 0.523713C9.93076 0.0286976 11.226 -0.11949 12.4857 0.0965962C13.7454 0.312681 14.9172 0.884048 15.8633 1.74347C16.8093 2.6029 17.49 3.71462 17.8257 4.94786C17.9671 5.47402 17.9308 6.0321 17.7226 6.53556C17.5144 7.03903 17.1459 7.45973 16.6743 7.73243C16.2027 8.00514 15.6542 8.11461 15.114 8.04386C14.5738 7.97311 14.0721 7.7261 13.6866 7.34115L11.782 5.43658C10.9869 4.64077 10.0321 4.02268 8.98054 3.62315C7.92898 3.2236 6.80464 3.05167 5.68173 3.11872C5.73045 3.04329 5.7823 2.96629 5.83416 2.89086Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M2.89086 16.1631C1.83999 15.4357 1.01873 14.4232 0.523713 13.2449C0.0286976 12.0665 -0.11949 10.7713 0.0965962 9.51164C0.312681 8.25193 0.884028 7.08015 1.74345 6.13414C2.60287 5.18812 3.71461 4.50723 4.94785 4.17159C5.47456 4.02776 6.03405 4.06225 6.53911 4.2697C7.04416 4.47713 7.46641 4.84585 7.73998 5.31836C8.01353 5.79087 8.12306 6.34062 8.0515 6.8819C7.97992 7.42318 7.73126 7.92556 7.34428 8.31074L5.43972 10.2153C5.17872 10.4773 4.93564 10.7566 4.71213 11.0513C3.57219 12.5614 3.00831 14.4285 3.12186 16.3171C3.04486 16.2668 2.96786 16.2165 2.89086 16.1631Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M16.1648 19.1064C15.4374 20.1578 14.4249 20.9795 13.2463 21.4748C12.0678 21.9701 10.7722 22.1185 9.51222 21.9024C8.2522 21.6862 7.08014 21.1147 6.134 20.2549C5.18786 19.3952 4.50702 18.2831 4.1716 17.0494C4.02861 16.5228 4.06372 15.9635 4.27149 15.4588C4.47927 14.9541 4.84802 14.5323 5.32039 14.2589C5.79276 13.9855 6.34227 13.876 6.88338 13.9472C7.42449 14.0185 7.92685 14.2666 8.31233 14.653L10.2169 16.5575C10.4778 16.8198 10.7572 17.063 11.0529 17.2851C12.562 18.4258 14.429 18.9898 16.3172 18.8754C16.2685 18.9524 16.2167 19.0309 16.1648 19.1064Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_746_218">
-                                                                    <rect
-                                                                        width="22"
-                                                                        height="22"
-                                                                        fill="white"
-                                                                    ></rect>
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="mt-4">
-                                                <a
-                                                    class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/roadmap"
-                                                >
-                                                    Our Roadmap{" "}
-                                                    <div class="items-center justify-center text-indigo-400/60 inline-block h-3 w-3 cursor-help">
-                                                        <svg
-                                                            class="inline-block w-3 h-3 ml-1 text-indigo-400 dark:text-indigo-400/60"
-                                                            viewBox="0 0 22 22"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                            <g clip-path="url(#clip0_746_218)">
-                                                                <path
-                                                                    d="M19.1064 5.83416C20.158 6.56113 20.9798 7.5734 21.4753 8.75178C21.9708 9.93015 22.1194 11.2256 21.9034 12.4855C21.6875 13.7455 21.1159 14.9175 20.2564 15.8636C19.3966 16.8096 18.2845 17.4905 17.051 17.8257C16.5252 17.966 15.9676 17.9289 15.4649 17.7204C14.9622 17.5117 14.5422 17.1434 14.27 16.6719C13.9978 16.2007 13.8887 15.6527 13.9593 15.113C14.03 14.5733 14.2765 14.072 14.6609 13.6866L16.5655 11.7805C17.3635 10.9869 17.983 10.0324 18.3831 8.98044C18.783 7.92853 18.954 6.80343 18.8848 5.68018C18.954 5.73046 19.031 5.78073 19.1064 5.83416Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M5.83416 2.89086C6.56162 1.83999 7.57408 1.01873 8.75243 0.523713C9.93076 0.0286976 11.226 -0.11949 12.4857 0.0965962C13.7454 0.312681 14.9172 0.884048 15.8633 1.74347C16.8093 2.6029 17.49 3.71462 17.8257 4.94786C17.9671 5.47402 17.9308 6.0321 17.7226 6.53556C17.5144 7.03903 17.1459 7.45973 16.6743 7.73243C16.2027 8.00514 15.6542 8.11461 15.114 8.04386C14.5738 7.97311 14.0721 7.7261 13.6866 7.34115L11.782 5.43658C10.9869 4.64077 10.0321 4.02268 8.98054 3.62315C7.92898 3.2236 6.80464 3.05167 5.68173 3.11872C5.73045 3.04329 5.7823 2.96629 5.83416 2.89086Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M2.89086 16.1631C1.83999 15.4357 1.01873 14.4232 0.523713 13.2449C0.0286976 12.0665 -0.11949 10.7713 0.0965962 9.51164C0.312681 8.25193 0.884028 7.08015 1.74345 6.13414C2.60287 5.18812 3.71461 4.50723 4.94785 4.17159C5.47456 4.02776 6.03405 4.06225 6.53911 4.2697C7.04416 4.47713 7.46641 4.84585 7.73998 5.31836C8.01353 5.79087 8.12306 6.34062 8.0515 6.8819C7.97992 7.42318 7.73126 7.92556 7.34428 8.31074L5.43972 10.2153C5.17872 10.4773 4.93564 10.7566 4.71213 11.0513C3.57219 12.5614 3.00831 14.4285 3.12186 16.3171C3.04486 16.2668 2.96786 16.2165 2.89086 16.1631Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                                <path
-                                                                    d="M16.1648 19.1064C15.4374 20.1578 14.4249 20.9795 13.2463 21.4748C12.0678 21.9701 10.7722 22.1185 9.51222 21.9024C8.2522 21.6862 7.08014 21.1147 6.134 20.2549C5.18786 19.3952 4.50702 18.2831 4.1716 17.0494C4.02861 16.5228 4.06372 15.9635 4.27149 15.4588C4.47927 14.9541 4.84802 14.5323 5.32039 14.2589C5.79276 13.9855 6.34227 13.876 6.88338 13.9472C7.42449 14.0185 7.92685 14.2666 8.31233 14.653L10.2169 16.5575C10.4778 16.8198 10.7572 17.063 11.0529 17.2851C12.562 18.4258 14.429 18.9898 16.3172 18.8754C16.2685 18.9524 16.2167 19.0309 16.1648 19.1064Z"
-                                                                    fill="currentColor"
-                                                                ></path>
-                                                            </g>
-                                                            <defs>
-                                                                <clipPath id="clip0_746_218">
-                                                                    <rect
-                                                                        width="22"
-                                                                        height="22"
-                                                                        fill="white"
-                                                                    ></rect>
-                                                                </clipPath>
-                                                            </defs>
-                                                        </svg>
-                                                    </div>
-                                                </a>
-                                            </li>
+                                            
                                             <li class="mt-4">
                                                 <a
                                                     target="_blank"
