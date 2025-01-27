@@ -15,6 +15,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "./ui/textarea";
 import { z } from "zod";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
     fullName: z.string().min(1, { message: "Name is required." }),
@@ -22,7 +24,8 @@ const schema = z.object({
     email: z.string().email("Please enter a valid email address."),
     city: z.string().min(1, { message: "City is required." }),
     experience: z.number().min(0, { message: "Minimum experience must be 0." }),
-    skills: z.string().min(1, { message: "Skilss are required." }),
+    note: z.string(),
+    skills: z.string().min(1, { message: "Skills are required." }),
     resume: z
         .any()
         .refine(
@@ -35,6 +38,15 @@ const schema = z.object({
 });
 
 const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
+    const {
+        register,
+        handleSubmit,
+        control,
+        formState: { errors },
+        reset,
+    } = useForm({
+        resolver: zodResolver(schema),
+    });
     return (
         <Drawer open={applied ? false : undefined}>
             <DrawerTrigger asChild>
@@ -67,56 +79,127 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                             type="text"
                             placeholder="Full Name"
                             className="flex-1"
+                            {...register("fullName")}
                         />
+                        {errors.firstName && (
+                            <p className="text-red-500">
+                                {errors.experience.message}
+                            </p>
+                        )}
                         <Input
                             type="number"
                             placeholder="Mobile No"
                             className="flex-1"
+                            {...register("mobileNo", {
+                                valueAsNumber: true,
+                            })}
                         />
+                        {errors.number && (
+                            <p className="text-red-500">
+                                {errors.number.message}
+                            </p>
+                        )}
                         <Input
                             type="email"
                             placeholder="Email"
                             className="flex-1"
+                            {...register("email")}
                         />
+                        {errors.email && (
+                            <p className="text-red-500">
+                                {errors.email.message}
+                            </p>
+                        )}
                         <Input
                             type="text"
                             placeholder="City"
                             className="flex-1"
+                            {...register("city")}
                         />
+                        {errors.city && (
+                            <p className="text-red-500">
+                                {errors.city.message}
+                            </p>
+                        )}
                         <Input
                             type="number"
                             placeholder="Year of experience"
                             className="flex-1"
+                            {...register("experience", {
+                                valueAsNumber: true,
+                            })}
                         />
+                        {errors.number && (
+                            <p className="text-red-500">
+                                {errors.number.message}
+                            </p>
+                        )}
                         <Input
                             type="text"
                             placeholder="Skills (Comma Separated)"
                             className="flex-1"
+                            {...register("skills")}
                         />
+                        {errors.skills && (
+                            <p className="text-red-500">
+                                {errors.skills.message}
+                            </p>
+                        )}
                     </div>
                     <div className="flex flex-col gap-4">
-                        <Textarea placeholder="Additional Note..." />
-                        <RadioGroup defaultValue="option-one">
-                            <Label>Confirm your availability</Label>
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="Yes" id="yes" />
-                                <Label htmlFor="yes">
-                                    {" "}
-                                    Yes, I am available to join immediately
-                                </Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="No" id="no" />
-                                <Label htmlFor="no">No</Label>
-                            </div>
-                        </RadioGroup>
+                        <textarea
+                            className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                            placeholder="Additional Note..."
+                            {...register("note")}
+                        />
+                        {errors.note && (
+                            <p className="text-red-500">
+                                {errors.note.message}
+                            </p>
+                        )}
+                        <Controller
+                            name="availability"
+                            control={control}
+                            render={({ field }) => (
+                                <RadioGroup
+                                    onValueChange={field.onChange}
+                                    {...field}
+                                >
+                                    <Label>Confirm your availability</Label>
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="Yes" id="yes" />
+                                        <Label htmlFor="yes">
+                                            {" "}
+                                            Yes, I am available to join
+                                            immediately
+                                        </Label>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                        <RadioGroupItem value="No" id="no" />
+                                        <Label htmlFor="no">No</Label>
+                                    </div>
+                                </RadioGroup>
+                            )}
+                        />
+
+                        {errors.availability && (
+                            <p className="text-red-500">
+                                {errors.availability.message}
+                            </p>
+                        )}
                         <div>
                             <Label>Upload you resume</Label>
                             <Input
                                 type="file"
                                 accept=".pdf, .doc, .docx"
                                 className="flex-1 file:text-gray-500"
+                                {...register("resume")}
                             />
+                            {errors.resume && (
+                                <p className="text-red-500">
+                                    {errors.resume.message}
+                                </p>
+                            )}
                         </div>
                     </div>
                     <div className="mt-4">
