@@ -20,7 +20,7 @@ const FAQ = () => {
         },
         {
             id: 3,
-            question: "How do I start hiring from Workindia?",
+            question: "How do I start hiring from Talentify?",
             answer: "Hiring from Workindia is easy and quick. Just follow these steps : - Post a Job  akes less than 5 minutes and Register via OTP - Choose your hiring plan and pay - Get verified our team will get in touch Candidates will start contacting you immediately after successful verification.",
         },
         {
