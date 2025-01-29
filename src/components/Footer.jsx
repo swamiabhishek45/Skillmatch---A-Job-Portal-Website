@@ -74,9 +74,7 @@ const Footer = () => {
                                         href="https://x.com/swamiabhishek45"
                                         target="_blank"
                                     >
-                                        <button
-                                            class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
-                                        >
+                                        <button class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700">
                                             <div>
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +129,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/features/feedback-collection"
+                                                    href="#"
                                                 >
                                                     Feedback &amp; Roadmap
                                                 </a>
@@ -139,7 +137,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/features/announce-updates"
+                                                    href="#"
                                                 >
                                                     Changelog
                                                 </a>
@@ -147,7 +145,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/features/surveys"
+                                                    href="#"
                                                 >
                                                     Surveys
                                                 </a>
@@ -155,7 +153,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/features/knowledge-base"
+                                                    href="#"
                                                 >
                                                     Knowledge Base
                                                 </a>
@@ -163,7 +161,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/integrations"
+                                                    href="#"
                                                 >
                                                     Integrations
                                                 </a>
@@ -178,7 +176,7 @@ const Footer = () => {
                                             <li>
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/canny"
+                                                    href="#"
                                                 >
                                                     Canny
                                                 </a>
@@ -186,7 +184,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/beamer"
+                                                    href="#"
                                                 >
                                                     Beamer
                                                 </a>
@@ -194,16 +192,16 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/uservoice"
+                                                    href="#"
                                                 >
                                                     UserVoice
                                                 </a>
                                             </li>
-                                            
+
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/alternative/all-alternatives"
+                                                    href="#"
                                                 >
                                                     Others
                                                 </a>
@@ -222,28 +220,25 @@ const Footer = () => {
                                                     target="_blank"
                                                     rel="noreferrer"
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://help.featurebase.app/"
+                                                    href="#"
                                                 >
                                                     Help Center{" "}
-                                                    
                                                 </a>
                                             </li>
-                                            
-                                            
+
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/use-cases"
+                                                    href="#"
                                                 >
                                                     Use Cases
                                                 </a>
                                             </li>
-                                           
-                                            
+
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/privacy-policy"
+                                                    href="#"
                                                 >
                                                     Privacy Policy
                                                 </a>
@@ -251,12 +246,11 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/terms-of-service"
+                                                    href="#"
                                                 >
                                                     Terms of Service
                                                 </a>
                                             </li>
-                                            
                                         </ul>
                                     </div>
                                     <div class="mt-12 md:mt-0">
@@ -267,18 +261,18 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/about"
+                                                    href="#"
                                                 >
                                                     About Us
                                                 </a>
                                             </li>
-                                            
+
                                             <li class="mt-4">
                                                 <a
                                                     target="_blank"
                                                     rel="noreferrer"
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://discord.com/invite/9wFwqHW4HZ"
+                                                    href="#"
                                                 >
                                                     Community
                                                 </a>
@@ -288,7 +282,7 @@ const Footer = () => {
                                                     target="_blank"
                                                     rel="noreferrer"
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="https://featurebase.notion.site/Featurebase-positions-b0e8e970007d4e5aafa7e48e08e7e2e6"
+                                                    href="#"
                                                 >
                                                     Careers
                                                 </a>
