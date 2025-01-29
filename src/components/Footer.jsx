@@ -290,7 +290,7 @@ const Footer = () => {
                                             <li class="mt-4">
                                                 <a
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
-                                                    href="/blog"
+                                                    href="#"
                                                 >
                                                     Blog
                                                 </a>
