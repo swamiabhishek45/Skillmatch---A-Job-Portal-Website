@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { BookmarkIcon, BriefcaseBusiness, PenBox } from "lucide-react";
+import Logo from "../assets/logo.png";
 
 const Navbar = () => {
     const [showSignIn, setShowSignIn] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
     const [search, setSearch] = useSearchParams();
 
     const { user } = useUser();
-    
+
     useEffect(() => {
         if (search.get("sign-in")) {
             setShowSignIn(true);
@@ -36,9 +37,14 @@ const Navbar = () => {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <Link to="/">
-                            <span className="roboto-slab text-xl md:text-3xl font-bold text-purple-500">
-                                Talentify
+                        <Link to="/" className="flex items-center gap-2">
+                            <img
+                                src={Logo}
+                                alt="logo"
+                                className="w-12 rounded-lg"
+                            />
+                            <span className=" text-4xl font-bold text-purple-500">
+                                JBL
                             </span>
                         </Link>
                     </div>

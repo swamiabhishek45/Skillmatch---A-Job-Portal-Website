@@ -11,7 +11,7 @@ const Footer = () => {
                             <div class="xl:col-span-1">
                                 <a href="/">
                                     <div class="inline-flex items-center text-lg md:text-2xl cursor-pointer font-bold text-purple-500">
-                                        Talentify
+                                        JBL
                                     </div>
                                 </a>
                                 <p class="mt-5 flex max-w-sm items-center text-base leading-6 text-gray-500 dark:text-gray-200">
@@ -32,7 +32,7 @@ const Footer = () => {
                                 {/* Socials  */}
                                 <div class="flex mt-6 space-x-3">
                                     <a
-                                        aria-label="Email Talentify"
+                                        aria-label="Email JBL"
                                         href="mailto:abhishekswami1435@gmail.com"
                                         class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                     >
@@ -47,12 +47,12 @@ const Footer = () => {
                                         </svg>
                                     </a>
                                     <a
-                                        aria-label="Talentify LinkedIn Link"
+                                        aria-label="JBL LinkedIn Link"
                                         href="https://www.linkedin.com/in/swamiabhishek45/"
                                         target="_blank"
                                     >
                                         <button
-                                            aria-label="Talentify LinkedIn Link"
+                                            aria-label="JBL LinkedIn Link"
                                             class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                         >
                                             <svg
@@ -70,7 +70,7 @@ const Footer = () => {
                                         </button>
                                     </a>
                                     <a
-                                        aria-label="Talentify Twitter Link"
+                                        aria-label="JBL Twitter Link"
                                         href="https://x.com/swamiabhishek45"
                                         target="_blank"
                                     >
@@ -91,12 +91,12 @@ const Footer = () => {
                                         </button>
                                     </a>
                                     <a
-                                        aria-label="Talentify Community Link"
+                                        aria-label="JBL Community Link"
                                         href="https://discord.com/"
                                         target="_blank"
                                     >
                                         <button
-                                            aria-label="Talentify Community Link"
+                                            aria-label="JBL Community Link"
                                             class="inline-flex items-center justify-center text-gray-200 border rounded-full main-transition h-9 w-9 border-gray-100/60 bg-gray-50 hover:bg-gray-100/60 dark:border-gray-750/60 dark:bg-gray-800 dark:hover:bg-gray-700"
                                         >
                                             <svg

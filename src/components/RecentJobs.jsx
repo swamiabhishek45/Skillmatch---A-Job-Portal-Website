@@ -3,6 +3,8 @@ import { Button } from "./ui/moving-border";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
 import RemoteJobCard from "./RemoteJobCard";
+import { InteractiveHoverButton } from "./ui/interactive-hover-button";
+
 
 const RecentJobs = () => {
     const [jobs, setJobs] = useState([]);
@@ -57,10 +59,7 @@ const RecentJobs = () => {
 
             <div className="flex my-10 items-center justify-center">
                 <Link to="/jobs">
-                    <button className="flex items-center gap-2 xshadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-                        Show more jobs
-                        <FaAngleRight className="mt-[2px]" />
-                    </button>
+                    <InteractiveHoverButton>Show more jobs</InteractiveHoverButton>
                 </Link>
             </div>
         </div>
