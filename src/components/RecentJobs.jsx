@@ -5,7 +5,6 @@ import { FaAngleRight } from "react-icons/fa";
 import RemoteJobCard from "./RemoteJobCard";
 import { InteractiveHoverButton } from "./ui/interactive-hover-button";
 
-
 const RecentJobs = () => {
     const [jobs, setJobs] = useState([]);
 
@@ -59,7 +58,9 @@ const RecentJobs = () => {
 
             <div className="flex my-10 items-center justify-center">
                 <Link to="/jobs">
-                    <InteractiveHoverButton>Show more jobs</InteractiveHoverButton>
+                    <InteractiveHoverButton>
+                        Show more jobs
+                    </InteractiveHoverButton>
                 </Link>
             </div>
         </div>
