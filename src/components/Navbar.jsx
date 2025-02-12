@@ -43,8 +43,8 @@ const Navbar = () => {
                                 alt="logo"
                                 className="w-12 rounded-lg"
                             />
-                            <span className=" text-4xl font-bold text-purple-500">
-                                JBL
+                            <span className=" text-4xl hidden md:block font-bold text-purple-500">
+                                Skill Match
                             </span>
                         </Link>
                     </div>

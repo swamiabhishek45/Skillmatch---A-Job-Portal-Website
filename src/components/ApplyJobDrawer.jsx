@@ -17,6 +17,9 @@ import { Textarea } from "./ui/textarea";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import useFetch from "@/hooks/useFetch";
+import { applyToJob } from "@/api/apiApplications";
+import { BarLoader } from "react-spinners";
 
 const schema = z.object({
     fullName: z.string().min(1, { message: "Name is required." }),
@@ -47,6 +50,23 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
     } = useForm({
         resolver: zodResolver(schema),
     });
+    const {
+        loading: loadingApply,
+        error: errorApply,
+        fn: fnApply,
+    } = useFetch(applyToJob);
+
+    const onSubmit = (data) => {
+        fnApply({
+            ...data,
+            job_id: job.id,
+            candidate_id: user.id,
+            name: user.fullName,
+            status: "applied",
+            resume: data.resume[0],
+        });
+    };
+
     return (
         <Drawer open={applied ? false : undefined}>
             <DrawerTrigger asChild>
@@ -73,7 +93,7 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                     </DrawerDescription>
                 </DrawerHeader>
 
-                <form action="" className="p-4 pb-0">
+                <form onSubmit={handleSubmit(onSubmit)} className="p-4 pb-0">
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <Input
                             type="text"
@@ -199,6 +219,18 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                                 <p className="text-red-500">
                                     {errors.resume.message}
                                 </p>
+                            )}
+                            {errorApply?.message && (
+                                <p className="text-red-500">
+                                    {errorApply?.message}
+                                </p>
+                            )}
+                            {loadingApply && (
+                                <BarLoader
+                                    width="100%"
+                                    className="mb-4"
+                                    color="purple"
+                                />
                             )}
                         </div>
                     </div>
