@@ -94,77 +94,87 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                 </DrawerHeader>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="p-4 pb-0">
-                    <div className="grid grid-cols-2 gap-4 mb-4">
-                        <Input
-                            type="text"
-                            placeholder="Full Name"
-                            className="flex-1"
-                            {...register("fullName")}
-                        />
-                        {errors.firstName && (
-                            <p className="text-red-500">
-                                {errors.experience.message}
-                            </p>
-                        )}
-                        <Input
-                            type="number"
-                            placeholder="Mobile No"
-                            className="flex-1"
-                            {...register("mobileNo", {
-                                valueAsNumber: true,
-                            })}
-                        />
-                        {errors.number && (
-                            <p className="text-red-500">
-                                {errors.number.message}
-                            </p>
-                        )}
-                        <Input
-                            type="email"
-                            placeholder="Email"
-                            className="flex-1"
-                            {...register("email")}
-                        />
-                        {errors.email && (
-                            <p className="text-red-500">
-                                {errors.email.message}
-                            </p>
-                        )}
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <Input
+                                type="text"
+                                placeholder="Full Name"
+                                className="flex-1"
+                                {...register("fullName")}
+                            />
+                            {errors.fullName && (
+                                <p className="text-red-500">
+                                    {errors.fullName.message}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <Input
+                                type="number"
+                                placeholder="Mobile No"
+                                className="flex-1"
+                                {...register("mobileNo", {
+                                    valueAsNumber: true,
+                                })}
+                            />
+                            {errors.mobileNo && (
+                                <p className="text-red-500">
+                                    {errors.mobileNo.message}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <Input
+                                type="email"
+                                placeholder="Email"
+                                className="flex-1"
+                                {...register("email")}
+                            />
+                            {errors.email && (
+                                <p className="text-red-500">
+                                    {errors.email.message}
+                                </p>
+                            )}
+                        </div>
                         <Input
                             type="text"
                             placeholder="City"
                             className="flex-1"
                             {...register("city")}
                         />
-                        {errors.city && (
+                        {/* {errors.city && (
                             <p className="text-red-500">
                                 {errors.city.message}
                             </p>
-                        )}
-                        <Input
-                            type="number"
-                            placeholder="Year of experience"
-                            className="flex-1"
-                            {...register("experience", {
-                                valueAsNumber: true,
-                            })}
-                        />
-                        {errors.number && (
-                            <p className="text-red-500">
-                                {errors.number.message}
-                            </p>
-                        )}
-                        <Input
-                            type="text"
-                            placeholder="Skills (Comma Separated)"
-                            className="flex-1"
-                            {...register("skills")}
-                        />
-                        {errors.skills && (
-                            <p className="text-red-500">
-                                {errors.skills.message}
-                            </p>
-                        )}
+                        )} */}
+                        <div>
+                            <Input
+                                type="number"
+                                placeholder="Year of experience"
+                                className="flex-1"
+                                {...register("experience", {
+                                    valueAsNumber: true,
+                                })}
+                            />
+                            {errors.experience && (
+                                <p className="text-red-500">
+                                    {errors.experience.message}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <Input
+                                type="text"
+                                placeholder="Skills (Comma Separated)"
+                                className="flex-1"
+                                {...register("skills")}
+                            />
+                            {errors.skills && (
+                                <p className="text-red-500">
+                                    {errors.skills.message}
+                                </p>
+                            )}
+                        </div>
                     </div>
                     <div className="flex flex-col gap-4">
                         <textarea
