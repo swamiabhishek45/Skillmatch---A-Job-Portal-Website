@@ -11,13 +11,11 @@ const Footer = () => {
                             <div class="xl:col-span-1">
                                 <a href="/">
                                     <div class="inline-flex items-center text-lg md:text-2xl cursor-pointer font-bold text-purple-500">
-                                        Skill Match
+                                        SkillMatch
                                     </div>
                                 </a>
                                 <p class="mt-5 flex max-w-sm items-center text-base leading-6 text-gray-500 dark:text-gray-200">
-                                    The all-in-one tool for customer feedback,
-                                    changelogs, surveys, and more. Built-in the
-                                    🇪🇺.
+                                    Fell free to get in touch with us via phone or send a message
                                 </p>
                                 <iframe
                                     class="-ml-1.5 mt-3 opacity-[63%]"
@@ -170,7 +168,7 @@ const Footer = () => {
                                     </div>
                                     <div class="mt-12 md:mt-0">
                                         <p class="text-sm font-medium leading-5 tracking-wider text-gray-300 uppercase dark:text-gray-200/80">
-                                            Compare
+                                            Info
                                         </p>
                                         <ul class="mt-4">
                                             <li>
@@ -178,7 +176,7 @@ const Footer = () => {
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
                                                     href="#"
                                                 >
-                                                    Canny
+                                                    Support
                                                 </a>
                                             </li>
                                             <li class="mt-4">
@@ -186,7 +184,7 @@ const Footer = () => {
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
                                                     href="#"
                                                 >
-                                                    Beamer
+                                                    Developer
                                                 </a>
                                             </li>
                                             <li class="mt-4">
@@ -194,7 +192,7 @@ const Footer = () => {
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
                                                     href="#"
                                                 >
-                                                    UserVoice
+                                                    Service
                                                 </a>
                                             </li>
 
@@ -203,7 +201,7 @@ const Footer = () => {
                                                     class="text-base leading-6 text-gray-400 duration-300 transform dark:text-gray-200 dark:hover:text-indigo-200"
                                                     href="#"
                                                 >
-                                                    Others
+                                                    Get Started
                                                 </a>
                                             </li>
                                         </ul>

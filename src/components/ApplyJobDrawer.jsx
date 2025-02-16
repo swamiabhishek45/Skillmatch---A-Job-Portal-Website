@@ -22,7 +22,7 @@ import { applyToJob } from "@/api/apiApplications";
 import { BarLoader } from "react-spinners";
 
 const schema = z.object({
-    fullName: z.string().min(1, { message: "Name is required." }),
+    name: z.string().min(1, { message: "Name is required." }),
     mobileNo: z.number().min(10, { message: "Mobile number is required." }),
     email: z.string().email("Please enter a valid email address."),
     city: z.string().min(1, { message: "City is required." }),
@@ -61,7 +61,7 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
             ...data,
             job_id: job.id,
             candidate_id: user.id,
-            name: user.fullName,
+            name: user.name,
             status: "applied",
             resume: data.resume[0],
         });
@@ -100,11 +100,11 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                                 type="text"
                                 placeholder="Full Name"
                                 className="flex-1"
-                                {...register("fullName")}
+                                {...register("name")}
                             />
-                            {errors.fullName && (
+                            {errors.name && (
                                 <p className="text-red-500">
-                                    {errors.fullName.message}
+                                    {errors.name.message}
                                 </p>
                             )}
                         </div>

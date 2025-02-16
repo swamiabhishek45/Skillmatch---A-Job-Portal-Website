@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import ShareJob from "@/components/ShareJob";
 import ApplyJobDrawer from "@/components/ApplyJobDrawer";
 import { PiMoney } from "react-icons/pi";
+import ApplicationCard from "@/components/ApplicationCard";
 
 const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
     const [saved, setSaved] = useState(savedInit);
@@ -212,8 +213,8 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                                 </Button>
                             )}
                         </div>
-                        
-                            <ShareJob job={job} />
+
+                        <ShareJob job={job} />
                     </div>
                 </div>
                 <hr className="border-1 border-gray-400" />
@@ -243,6 +244,23 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         )}
                     />
                 )}
+
+                {job?.applications.length > 0 &&
+                    job?.recruiter_id === user?.id && (
+                        <div className="flex flex-col gap-2">
+                            <h2 className="text-2xl sm:text-3xl font-bold">
+                                Applications
+                            </h2>
+                            {job?.applications.map((application) => {
+                                return (
+                                    <ApplicationCard
+                                        key={application.id}
+                                        application={application}
+                                    />
+                                );
+                            })}
+                        </div>
+                    )}
             </div>
         </>
     );

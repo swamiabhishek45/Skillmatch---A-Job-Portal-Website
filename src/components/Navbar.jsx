@@ -44,7 +44,7 @@ const Navbar = () => {
                                 className="w-12 rounded-lg"
                             />
                             <span className=" text-4xl hidden md:block font-bold text-purple-500">
-                                Skill Match
+                                SkillMatch
                             </span>
                         </Link>
                     </div>
