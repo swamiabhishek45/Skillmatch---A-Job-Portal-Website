@@ -3,6 +3,16 @@ import { Card, CardTitle } from "./ui/card-hover-effect";
 import { CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Boxes, BriefcaseBusiness, Download } from "lucide-react";
 import { FiMapPin } from "react-icons/fi";
+import useFetch from "@/hooks/useFetch";
+import { updateApplication } from "@/api/apiApplications";
+import { BarLoader } from "react-spinners";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 const ApplicationCard = ({ application, isCandiate = false }) => {
     const handleDownload = () => {
@@ -12,10 +22,22 @@ const ApplicationCard = ({ application, isCandiate = false }) => {
         link.click();
     };
 
+    const { loading: loadingAppStatus, fn: fnAppStatus } = useFetch(
+        updateApplication,
+        { job_id: application.job_id }
+    );
+
+    const handleStatusChange = (status) => {
+        fnAppStatus(status);
+    };
+
     return (
         <Card>
+            {loadingAppStatus && (
+                <BarLoader width="100%" className="mb-4" color="purple" />
+            )}
             <CardHeader className="flex flex-col">
-                <CardTitle className="flex justify-between w-full font-bold">
+                <CardTitle className="flex justify-between w-full font-bold text-xl">
                     {isCandiate
                         ? `${application?.job?.title} at ${application?.job?.company?.name}`
                         : application.name}
@@ -47,12 +69,27 @@ const ApplicationCard = ({ application, isCandiate = false }) => {
                 <span>
                     {new Date(application?.created_at).toLocaleString()}
                 </span>
-                {!isCandiate ? (
+                {isCandiate ? (
                     <span className="capitalize font-bold">
                         Status: {application.status}
                     </span>
                 ) : (
-                    <></>
+                    <Select
+                        onValueChange={handleStatusChange}
+                        defaultValue={application.status}
+                    >
+                        <SelectTrigger className="w-52">
+                            <SelectValue placeholder="Application Status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="applied">Applied</SelectItem>
+                            <SelectItem value="interviewing">
+                                Interviewing
+                            </SelectItem>
+                            <SelectItem value="hired">Hired</SelectItem>
+                            <SelectItem value="rejected">Rejected</SelectItem>
+                        </SelectContent>
+                    </Select>
                 )}
             </CardFooter>
         </Card>

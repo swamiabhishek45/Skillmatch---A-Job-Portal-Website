@@ -44,7 +44,7 @@ export async function updateApplication(token, { job_id }, status) {
         .eq("job_id", job_id)
         .select();
 
-    if (error) {
+    if (error || data.length === 0) {
         console.error("Error updating application: ", error);
         return null;
     }

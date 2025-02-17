@@ -33,7 +33,7 @@ const Header = () => {
                     <div
                         className={`roboto-slab w-11/12 text-center text-2xl text-white sm:text-3xl md:text-4xl lg:w-3/4 lg:text-5xl xl:text-6xl`}
                     >
-                        Connecting Employers with Talent, Job Seekers with
+                        Connecting Recruiters with Talent, Job Seekers with
                         Opportunities
                         {/* <span className="inline-block ">
                             <TypewriterEffectSmooth words={words} />

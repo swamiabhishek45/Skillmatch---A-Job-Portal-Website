@@ -224,7 +224,6 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     About the job
                 </h2>
                 <p>{job?.description}</p>
-
                 <h2 className="text-2xl md:text-3xl  font-semibold">
                     Job Requirements
                 </h2>
@@ -232,7 +231,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                     source={job?.requirements}
                     style={{ background: "transparent" }}
                 />
-
+                <hr className="border-1 border-gray-400" />
                 {/* render applications  */}
                 {job?.recruiter_id !== user?.id && (
                     <ApplyJobDrawer
@@ -244,7 +243,6 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         )}
                     />
                 )}
-
                 {job?.applications.length > 0 &&
                     job?.recruiter_id === user?.id && (
                         <div className="flex flex-col gap-8">
