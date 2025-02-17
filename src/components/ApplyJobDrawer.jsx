@@ -13,7 +13,6 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Textarea } from "./ui/textarea";
 import { z } from "zod";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,6 +49,7 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
     } = useForm({
         resolver: zodResolver(schema),
     });
+
     const {
         loading: loadingApply,
         error: errorApply,

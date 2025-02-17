@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardTitle } from "./ui/card-hover-effect";
 import { CardContent, CardFooter, CardHeader } from "./ui/card";
-import { Boxes, BriefcaseBusiness, Download, Locate, Map } from "lucide-react";
+import { Boxes, BriefcaseBusiness, Download } from "lucide-react";
 import { FiMapPin } from "react-icons/fi";
 
 const ApplicationCard = ({ application, isCandiate = false }) => {
