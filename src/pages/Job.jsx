@@ -46,10 +46,10 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
         }
     );
 
-    const handlestatusChange = (value) => {
-        const isOpen = value === "open";
-        fnHiringStatus(isOpen).then(() => fnJob());
-    };
+    // const handlestatusChange = (value) => {
+    //     const isOpen = value === "open";
+    //     fnHiringStatus(isOpen).then(() => fnJob());
+    // };
 
     const handleSaveJobs = async () => {
         await fnSavedJobs({
@@ -98,10 +98,10 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                             <span className="text-blue-600 font-semibold ">
                                 {job?.company?.company_name}
                             </span>{" "}
-                            in{" "}
+                            {/* in{" "}
                             <span className="text-white font-semibold">
                                 {job?.category}
-                            </span>
+                            </span> */}
                         </p>
                     </div>
                     <img
@@ -117,7 +117,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                 {/* job location  */}
                 <div className="flex gap-1 items-center">
                     <FiMapPin />
-                    {job?.candidate_required_location}
+                    {job?.location}
                 </div>
                 {/* job tags  */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 ">
@@ -126,7 +126,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                             <PlayCircle size={18} />
                             START DATE
                         </p>
-                        {job?.start_date}
+                        {job?.start_date ? job?.start_date : "Immediately"}
                     </div>
 
                     <div className="flex flex-col">
@@ -138,7 +138,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         </p>
                         <p className="flex gap-1 items-center">
                             <FaRupeeSign size={14} />
-                            {job?.salary}
+                            {job?.salary ? job?.salary : "Not Disclosed"}
                         </p>
                     </div>
                     <div className="flex flex-col">
@@ -149,7 +149,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                                 : "EXPERIENCE"}
                         </p>
 
-                        {job?.experience}
+                        {job?.experience ? job?.experience : 0}
                     </div>
                     <div className="flex flex-col">
                         <p className="flex gap-1 items-center text-gray-400">
@@ -161,7 +161,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                 </div>
                 {/* job created at and type */}
                 <div className="flex gap-2">
-                    {formatTimeDifference(job?.created_at).includes("week") ? (
+                    {formatTimeDifference(job?.created_at).includes("month") ? (
                         <div className="flex gap-1 items-center bg-[#13466b] text-blue-300  w-fit p-1 rounded-md text-xs">
                             <GiBackwardTime className="text-xl  size-4" />
                             <p className="">
@@ -243,6 +243,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         )}
                     />
                 )}
+                {/* Applications  */}
                 {job?.applications.length > 0 &&
                     job?.recruiter_id === user?.id && (
                         <div className="flex flex-col gap-8">

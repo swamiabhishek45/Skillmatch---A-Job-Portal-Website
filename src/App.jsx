@@ -67,6 +67,14 @@ function App() {
                         </ProtectedRoute>
                     ),
                 },
+                {
+                    path: "/posted-jobs",
+                    element: (
+                        <ProtectedRoute>
+                            <MyJobs />
+                        </ProtectedRoute>
+                    ),
+                },
             ],
         },
     ]);

@@ -51,9 +51,9 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
     });
 
     const {
+        fn: fnApply,
         loading: loadingApply,
         error: errorApply,
-        fn: fnApply,
     } = useFetch(applyToJob);
 
     const onSubmit = (data) => {
@@ -61,11 +61,17 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
             ...data,
             job_id: job.id,
             candidate_id: user.id,
-            name: user.name,
+            name: user.fullName,
             status: "applied",
             resume: data.resume[0],
-        });
+        }).then(()=>{
+            fetchJob();
+            reset();
+        })
     };
+
+    // console.log(user.fullName);
+    
 
     return (
         <Drawer open={applied ? false : undefined}>
@@ -93,7 +99,7 @@ const ApplyJobDrawer = ({ job, user, fetchJob, applied = false }) => {
                     </DrawerDescription>
                 </DrawerHeader>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="p-4 pb-0">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4 pb-0">
                     <div className="grid md:grid-cols-2 gap-4 mb-4">
                         <div>
                             <Input

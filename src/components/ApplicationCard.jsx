@@ -31,6 +31,9 @@ const ApplicationCard = ({ application, isCandiate = false }) => {
         fnAppStatus(status);
     };
 
+    // console.log(application);
+    
+
     return (
         <Card>
             {loadingAppStatus && (
@@ -39,7 +42,7 @@ const ApplicationCard = ({ application, isCandiate = false }) => {
             <CardHeader className="flex flex-col">
                 <CardTitle className="flex justify-between w-full font-bold text-xl">
                     {isCandiate
-                        ? `${application?.job?.title} at ${application?.job?.company?.name}`
+                        ? `${application?.job?.title} at ${application?.job?.company?.company_name}`
                         : application.name}
 
                     <Download

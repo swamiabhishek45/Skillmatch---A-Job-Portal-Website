@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/select";
 import useFetch from "@/hooks/useFetch";
 import { useUser } from "@clerk/clerk-react";
-import { State, City } from "country-state-city";
+import { City } from "country-state-city";
 import { useEffect, useState } from "react";
 import { BarLoader } from "react-spinners";
 
@@ -31,12 +31,12 @@ const JobListing = () => {
         loading: loadingJobs,
     } = useFetch(getJobs, { location, company_id, searchQuery });
 
-    // fetching companies
-    const { fn: fnCompanies, data: companies } = useFetch(getCompanies);
-
     useEffect(() => {
         if (isLoaded) fnJobs();
     }, [isLoaded, location, company_id, searchQuery]);
+
+    // fetching companies
+    const { fn: fnCompanies, data: companies } = useFetch(getCompanies);
 
     useEffect(() => {
         if (isLoaded) fnCompanies();
@@ -64,7 +64,7 @@ const JobListing = () => {
 
     return (
         <div className="max-w-7xl mx-5 xl:mx-auto">
-            <h1 className="text-center font-extrabold text-3xl sm:text-5xl md:text-6xl poppins my-5">
+            <h1 className="mt-5 font-extrabold text-3xl sm:text-5xl text-center pb-8">
                 Jobs added recently
             </h1>
 
@@ -89,19 +89,12 @@ const JobListing = () => {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                {jobs?.map(
-                                    ({ candidate_required_location, id }) => {
-                                        return (
-                                            <SelectItem
-                                                key={id}
-                                                value={
-                                                    candidate_required_location
-                                                }
-                                            >
-                                                {candidate_required_location}
-                                            </SelectItem>
-                                        );
-                                    }
+                                {City.getCitiesOfState("IN", "MH").map(
+                                    ({ name }) => (
+                                        <SelectItem key={name} value={name}>
+                                            {name}
+                                        </SelectItem>
+                                    )
                                 )}
                             </SelectGroup>
                         </SelectContent>
@@ -139,7 +132,7 @@ const JobListing = () => {
             )}
 
             {loadingJobs === false && (
-                <div className="grid sm:grid-cols-2 md:grid-cols-2 gap-5">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
                     {jobs?.length ? (
                         jobs
                             .sort(

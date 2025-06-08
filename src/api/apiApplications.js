@@ -4,6 +4,7 @@ export async function applyToJob(token, _, jobData) {
     const supabase = await supabaseClient(token);
 
     const random = Math.floor(Math.random() * 90000);
+
     const fileName = `resume-${random}-${jobData.candidate_id}`;
 
     const { error: storageError } = await supabase.storage
@@ -46,6 +47,21 @@ export async function updateApplication(token, { job_id }, status) {
 
     if (error || data.length === 0) {
         console.error("Error updating application: ", error);
+        return null;
+    }
+
+    return data;
+}
+export async function getApplications(token, { user_id }) {
+    const supabase = await supabaseClient(token);
+
+    const { data, error } = await supabase
+        .from("applications")
+        .select("*, job: jobs(title, company:companies(company_name))")
+        .eq("candidate_id", user_id);
+
+    if (error) {
+        console.error("Error fetching applications: ", error);
         return null;
     }
 
