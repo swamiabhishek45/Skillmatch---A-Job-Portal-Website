@@ -6,7 +6,6 @@ import {
     Drawer,
     DrawerClose,
     DrawerContent,
-    DrawerDescription,
     DrawerFooter,
     DrawerHeader,
     DrawerTitle,
@@ -28,11 +27,11 @@ const schema = z.object({
                 (file[0].type === "image/png" ||
                     file[0].type === "image/jpeg" ||
                     file[0].type === "image/jpg" ||
-                    file[0].type === "image/gif"     ||
+                    file[0].type === "image/gif" ||
                     file[0].type === "image/svg"),
         ),
 });
-const AddCompanyDrawer = ({fetchCompanies}) => {
+const AddCompanyDrawer = ({ fetchCompanies }) => {
     const {
         register,
         handleSubmit,

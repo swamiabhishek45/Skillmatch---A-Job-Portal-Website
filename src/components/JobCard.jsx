@@ -140,18 +140,20 @@ const JobCard = ({
                                     </div>
                                 )}
                             </div>
+                            {isMyJob && (
+                                <div className="flex float-right bg-red-500 p-2 rounded-md">
+                                    <Trash2Icon
+                                        fill="red"
+                                        size={18}
+                                        className="white cursor-pointer"
+                                        onClick={handleDeleteJob}
+                                    />
+                                </div>
+                            )}
                         </div>
                     </Card>
                 </Link>
             </div>
-            {isMyJob && (
-                <Trash2Icon
-                    fill="red"
-                    size={18}
-                    className="text-red-300 cursor-pointer"
-                    onClick={handleDeleteJob}
-                />
-            )}
         </div>
     );
 };
