@@ -1,72 +1,68 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import PeerList from "../assets/peerlist.svg";
-import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
+import { ArrowRight, Briefcase, Sparkles, Zap } from "lucide-react";
+import CandidateScreening from "./CandidateReel";
 
 const Header = () => {
-    const words = [
-        {
-            text: "B. E. ROZGAAR",
-            className: "text-purple-500 dark:text-purple-500",
-        },
-    ];
     return (
-        <>
-            <div className="px-4 md:px-0 mt-14">
-                {/* Peerlist Tag */}
-                <Link
-                    to="https://peerlist.io/swamiabhishek45`"
-                    aria-label="peerlist-tag"
-                    target="_blank"
+        <div className="mt-24 px-4 md:px-0">
+            {/* Badge */}
+            <div className="flex justify-center mb-10">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="group relative inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 pl-2 pr-4 py-1 text-sm font-medium backdrop-blur-2xl ring-1 ring-white/10 hover:ring-primary-500/50 transition-all cursor-default"
                 >
-                    <img
-                        src={PeerList}
-                        width={400}
-                        height={400}
-                        alt="Peerlist Logo"
-                        className="mx-auto mb-4 w-24 md:w-32"
-                    />
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-500/20 text-primary-400">
+                        <Sparkles size={14} className="group-hover:animate-spin" />
+                    </span>
+                    <span className="text-slate-300">AI-Powered Job Matching is Live</span>
+                    <Zap size={14} className="text-yellow-500 fill-yellow-500" />
+                </motion.div>
+            </div>
+
+            {/* Heading */}
+            <div className="flex flex-col items-center gap-4 text-center">
+                <h1 className="w-11/12 font-serif text-2xl font-semibold text-white sm:text-3xl md:text-4xl lg:w-3/4 lg:text-5xl xl:text-6xl">
+                    Connecting <span className="text-gradient italic">Recruiters</span> with Talent, Job Seekers with Opportunities
+                </h1>
+
+                <p className="w-full text-xs text-gray-400 sm:w-1/2 md:text-sm lg:text-lg">
+                    A platform where recruiters seamlessly connect with top talent, while
+                    candidates explore and secure the best career opportunities tailored
+                    to their skills and aspirations.
+                </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
+            >
+                <Link
+                    to="/jobs"
+                    className="group relative inline-flex items-center gap-2 rounded-xl bg-primary-600 px-10 py-4 text-center text-base font-semibold text-white shadow-[0_0_20px_rgba(139,92,246,0.3)] transition-all hover:scale-105 hover:bg-primary-500 active:scale-95 focus:ring-2 focus:ring-primary-400"
+                >
+                    <Briefcase size={20} />
+                    Explore Jobs
+                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </Link>
 
-                {/* Heading Section */}
-                <div className="flex flex-col items-center gap-4">
-                    <div
-                        className={`roboto-slab w-11/12 text-center text-2xl text-white sm:text-3xl md:text-4xl lg:w-3/4 lg:text-5xl xl:text-6xl`}
-                    >
-                        Connecting Recruiters with Talent, Job Seekers with
-                        Opportunities
-                        {/* <span className="inline-block ">
-                            <TypewriterEffectSmooth words={words} />
-                        </span> */}
-                    </div>
-                    <p className="poppins md:text-md w-full text-center text-xs text-gray-400 sm:w-1/2 lg:text-lg">
-                        A platform where recruiters seamlessly connect with top
-                        talent, while candidates explore and secure the best
-                        career opportunities tailored to their skills and
-                        aspirations.
-                    </p>
-                </div>
+                <Link
+                    to="/post-job"
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-10 py-4 text-center text-base font-semibold text-slate-300 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white active:scale-95 border-b-4 border-b-slate-800"
+                >
+                    Start Hiring
+                </Link>
+            </motion.div>
 
-                {/* Buttons Section */}
-                <div className="mt-12 flex w-full flex-col justify-center gap-6 sm:flex-row">
-                    <Link
-                        to="/jobs"
-                        className="work-sans md:text-md cursor-pointer rounded-lg bg-primarySkyBlue px-6 py-3 text-center text-sm font-medium text-white shadow-md bg-[#72389f] focus:ring-2 focus:ring-offset-2 focus:ring-primarySkyBlue transition-transform transform hover:scale-105 active:scale-95"
-                        aria-label="Explore Careers"
-                    >
-                        Get a Job
-                    </Link>
-
-                    <Link
-                        to="/post-job"
-                        className="work-sans md:text-md z-30 cursor-pointer rounded-lg bg-gray-800 px-6 py-3 text-center text-sm font-medium text-gray-300 shadow-md hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 transition-transform transform hover:scale-105 active:scale-95"
-                        aria-label="Success Stories"
-                    >
-                        Hire Now
-                    </Link>
-                </div>
-            </div>
-        </>
+            {/* Visual Section */}
+            {/* <CandidateScreening /> */}
+        </div>
     );
 };
 

@@ -17,8 +17,9 @@ import ShareJob from "@/components/ShareJob";
 import ApplyJobDrawer from "@/components/ApplyJobDrawer";
 import { PiMoney } from "react-icons/pi";
 import ApplicationCard from "@/components/ApplicationCard";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
+const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => { } }) => {
     const [saved, setSaved] = useState(savedInit);
     const { user, isLoaded } = useUser();
     const { id } = useParams();
@@ -46,10 +47,10 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
         }
     );
 
-    // const handlestatusChange = (value) => {
-    //     const isOpen = value === "open";
-    //     fnHiringStatus(isOpen).then(() => fnJob());
-    // };
+    const handlestatusChange = (value) => {
+        const isOpen = value === "open";
+        fnHiringStatus(isOpen).then(() => fnJob());
+    };
 
     const handleSaveJobs = async () => {
         await fnSavedJobs({
@@ -93,6 +94,9 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                                 )}
                             </div>
                         </div>
+
+                        
+
                         <p className=" text-slate-300 font-thin">
                             via{" "}
                             <span className="text-blue-600 font-semibold ">
@@ -217,6 +221,25 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => {} }) => {
                         <ShareJob job={job} />
                     </div>
                 </div>
+                {/* hiring status  */}
+                {job?.recruiter_id == user?.id &&
+                    <Select
+
+                        onValueChange={handlestatusChange}
+                    >
+                        <SelectTrigger className={`w-full ${job?.isOpen ? "bg-green-950" : "bg-red-950"}`}>
+                            <SelectValue placeholder={
+                                "Hiring status " + (job?.isOpen ? "( Open )" : "( Close )")
+                            } />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectGroup>
+
+                                <SelectItem value="open">Open</SelectItem>
+                                <SelectItem value="closed">Close</SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>}
                 <hr className="border-1 border-gray-400" />
                 {/* TODO: hiring status */}
                 {/* Job description  */}
