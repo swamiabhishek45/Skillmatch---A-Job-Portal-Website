@@ -17,15 +17,7 @@ const Footer = () => {
                                 <p class="mt-5 flex max-w-sm items-center text-base leading-6 text-gray-500 dark:text-gray-200">
                                     Fell free to get in touch with us via phone or send a message
                                 </p>
-                                <iframe
-                                    class="-ml-1.5 mt-3 opacity-[63%]"
-                                    src="https://status.featurebase.app/badge?theme=dark"
-                                    title="Featurebase Status Badge"
-                                    width="250"
-                                    height="30"
-                                    frameborder="0"
-                                    scrolling="no"
-                                ></iframe>
+                    
 
                                 {/* Socials  */}
                                 <div class="flex mt-6 space-x-3">

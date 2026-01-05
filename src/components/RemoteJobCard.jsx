@@ -24,7 +24,7 @@ const RemoteJobCard = ({ job }) => {
             <div className="flex justify-between">
                 <div className="flex gap-4  items-center">
                     <img
-                        src={CompLogo}
+                        src={job.company_logo_url}
                         alt="logo"
                         className="h-20 w-20 rounded-lg"
                     />

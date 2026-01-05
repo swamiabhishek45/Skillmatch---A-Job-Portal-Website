@@ -114,7 +114,8 @@ const PostJob = () => {
             >
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <Input placeholder="Job Title" {...register("title")} />
+                        <label className="text-sm font-medium text-gray-400">Job Title</label>
+                        <Input placeholder="e.g. Frontend Developer" {...register("title")} />
                         {errors.title && (
                             <p className="text-red-500">
                                 {errors.title.message}
@@ -130,13 +131,17 @@ const PostJob = () => {
                             {errors.category.message}
                         </p>
                     )} */}
-                    <Input placeholder="Salary" {...register("salary")} />
+                    <div>
+                        <label className="text-sm font-medium text-gray-400">Salary</label>
+                        <Input placeholder="e.g. ₹ 80k - 100k" {...register("salary")} />
+                    </div>
                     {/* {errors.salary && (
                         <p className="text-red-500">{errors.salary.message}</p>
                     )} */}
                     <div>
+                        <label className="text-sm font-medium text-gray-400">Job Type</label>
                         <Input
-                            placeholder="Job Type"
+                            placeholder="e.g. Full-time, Remote"
                             {...register("job_type")}
                         />
                         {errors.job_type && (
@@ -145,18 +150,22 @@ const PostJob = () => {
                             </p>
                         )}
                     </div>
-                    <Input
-                        placeholder="Experience"
-                        {...register("experience")}
-                    />
-                    {/* {errors.experience && (
-                        <p className="text-red-500">
-                            {errors.experience.message}
-                        </p>
-                    )} */}
                     <div>
+                        <label className="text-sm font-medium text-gray-400">Experience</label>
                         <Input
-                            placeholder="Openings"
+                            placeholder="e.g. 2+ years"
+                            {...register("experience")}
+                        />
+                        {/* {errors.experience && (
+                        <p className="text-red-500">
+                        {errors.experience.message}
+                        </p>
+                        )} */}
+                    </div>
+                    <div>
+                        <label className="text-sm font-medium text-gray-400">Openings</label>
+                        <Input
+                            placeholder="e.g. 10"
                             {...register("openings")}
                         />
                         {errors.openings && (
@@ -165,20 +174,24 @@ const PostJob = () => {
                             </p>
                         )}{" "}
                     </div>
-                    <Input
-                        placeholder="Start Date"
-                        {...register("start_date")}
-                    />
-                    {/* {errors.start_date && (
+                    <div>
+                        <label className="text-sm font-medium text-gray-400">Start Date</label>
+                        <Input
+                            placeholder="e.g. Immediately"
+                            {...register("start_date")}
+                        />
+                        {/* {errors.start_date && (
                         <p className="text-red-500">
-                            {errors.start_date.message}
+                        {errors.start_date.message}
                         </p>
-                    )} */}
+                        )} */}
+                    </div>
                 </div>
 
                 <div>
+                    <label className="text-sm font-medium text-gray-400">About the Job</label>
                     <Textarea
-                        placeholder="About the Job"
+                        placeholder="Brief description of the role..."
                         {...register("description")}
                     />
                     {errors.description && (
@@ -189,6 +202,7 @@ const PostJob = () => {
                 </div>
                 <div className="flex gap-4 items-center">
                     <div className="w-full">
+                        <label className="text-sm font-medium text-gray-400">Job Location</label>
                         <Controller
                             name="location"
                             control={control}
@@ -198,7 +212,7 @@ const PostJob = () => {
                                     onValueChange={field.onChange}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Job Location" />
+                                        <SelectValue placeholder="Select Location" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
@@ -225,6 +239,7 @@ const PostJob = () => {
                         )}
                     </div>
                     <div className="w-full">
+                        <label className="text-sm font-medium text-gray-400">Company</label>
                         <Controller
                             name="company_id"
                             control={control}
@@ -234,13 +249,13 @@ const PostJob = () => {
                                     onValueChange={field.onChange}
                                 >
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Company">
+                                        <SelectValue placeholder="Select Company">
                                             {field.value
                                                 ? companies?.find(
-                                                      (com) =>
-                                                          com.id ===
-                                                          Number(field.value)
-                                                  )?.company_name
+                                                    (com) =>
+                                                        com.id ===
+                                                        Number(field.value)
+                                                )?.company_name
                                                 : "Company"}
                                         </SelectValue>
                                     </SelectTrigger>
@@ -270,21 +285,24 @@ const PostJob = () => {
                     <AddCompanyDrawer fetchCompanies={fnCompanies} />
                 </div>
 
-                <Controller
-                    name="requirements"
-                    control={control}
-                    render={({ field }) => (
-                        <MDEditor
-                            value={field.value}
-                            onChange={field.onChange}
-                        />
+                <div>
+                    <label className="text-sm font-medium text-gray-400">Job Requirements (Rich Text)</label>
+                    <Controller
+                        name="requirements"
+                        control={control}
+                        render={({ field }) => (
+                            <MDEditor
+                                value={field.value}
+                                onChange={field.onChange}
+                            />
+                        )}
+                    />
+                    {errors.requirements && (
+                        <p className="text-red-500">
+                            {errors.requirements.message}
+                        </p>
                     )}
-                />
-                {errors.requirements && (
-                    <p className="text-red-500">
-                        {errors.requirements.message}
-                    </p>
-                )}
+                </div>
                 {errors.errorCreateJob && (
                     <p className="text-red-500">
                         {errors?.errorCreateJob?.message}
@@ -299,7 +317,7 @@ const PostJob = () => {
                 <Button
                     type="submit"
                     size="lg"
-                    className="mt-2 bg-purple-700 text-white"
+                    className="w-full text-white py-4 purple-gradient rounded-xl font-bold text-lg hover:shadow-[0_0_20px_-5px_#8b5cf6] transition-all"
                 >
                     Submit
                 </Button>
