@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 /* ... */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #030014;
+    color: #fff;
+}
 
 @layer base {
     :root {
@@ -56,6 +61,7 @@
 
         --radius: 0.5rem;
     }
+
     .dark {
         --background: 224 71.4% 4.1%;
 
@@ -111,6 +117,7 @@
     * {
         @apply border-border;
     }
+
     body {
         @apply bg-background text-foreground;
     }
@@ -132,4 +139,40 @@
     background: linear-gradient(to right, #a78bfa, #8b5cf6, #c4b5fd);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+
+.grid-background {
+    background-image:
+        linear-gradient(to right, rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.purple-gradient {
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030014;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
 }

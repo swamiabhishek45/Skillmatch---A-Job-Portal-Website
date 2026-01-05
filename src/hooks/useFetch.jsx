@@ -7,6 +7,8 @@ const useFetch = (cb, options = {}) => {
     const [error, setError] = useState(null);
     
     const { session } = useSession();
+    // console.log(data);
+
 
     const fn = async (...args) => {
         setLoading(true);
@@ -28,6 +30,7 @@ const useFetch = (cb, options = {}) => {
     };
 
     return { fn, data, loading, error };
+    
 };
 
 export default useFetch;

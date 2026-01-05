@@ -69,7 +69,7 @@ const JobListing = () => {
                 Jobs added recently
             </h1>
 
-            {/* Add filters here  */}
+            {/* filters here  */}
             <form onSubmit={handleSearch} className="flex gap-3 h-14 w-full ">
                 <Input
                     type="text"
@@ -132,6 +132,7 @@ const JobListing = () => {
                 <BarLoader width="100%" className="mb-4" color="purple" />
             )}
 
+            {/* listing jobs  */}
             {loadingJobs === false && (
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
                     {jobs?.length ? (

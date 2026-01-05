@@ -10,6 +10,7 @@ import PostJob from "./pages/PostJob";
 import { ThemeProvider } from "./components/ui/theme-provider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
+import ResumeAnalyzer from "./pages/ResumeAnalyze";
 function App() {
     const router = createBrowserRouter([
         {
@@ -40,6 +41,14 @@ function App() {
                     element: (
                         <ProtectedRoute>
                             <Job />
+                        </ProtectedRoute>
+                    ),
+                },
+                {
+                    path: "/analyze-resume",
+                    element: (
+                        <ProtectedRoute>
+                            <ResumeAnalyzer />
                         </ProtectedRoute>
                     ),
                 },
