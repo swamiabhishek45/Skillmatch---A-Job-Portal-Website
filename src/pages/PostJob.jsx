@@ -1,9 +1,7 @@
 import { getCompanies } from "@/api/apiCompanies";
 import { addNewJob } from "@/api/apiJobs";
 import AddCompanyDrawer from "@/components/AddCompanyDrawer";
-// import AddCompanyDrawer from "@/components/add-company-drawer";
 import { Button } from "@/components/ui/button";
-
 import { Input } from "@/components/ui/input";
 import {
     Select,
@@ -13,7 +11,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/useFetch";
 import { generateJobDescription } from "@/services/geminiServices";
 import { useUser } from "@clerk/clerk-react";
@@ -28,22 +25,22 @@ import { BarLoader } from "react-spinners";
 import { z } from "zod";
 
 const schema = z.object({
-    title: z.string().min(1, { message: "Title is required" }),
-    category: z.string(),
-    salary: z.string(),
-    job_type: z.string().min(1, { message: "This field is required" }),
-    experience: z.string(),
-    openings: z.string().min(1, { message: "This field is required" }),
-    start_date: z.string(),
-    location: z.string().min(1, { message: "Select a location" }),
-    company_id: z.string().min(1, { message: "Select or Add a new Company" }),
-    requirements: z.string().min(1, { message: "Requirements are required" }),
-    description: z.string().min(1, { message: "This field is required" }),
+    title: z.string().min(1, "Title is required"),
+    salary: z.string().optional(),
+    job_type: z.string().min(1, "Job type is required"),
+    experience: z.string().optional(),
+    openings: z.string().min(1, "Openings required"),
+    skills: z.string().min(1, "Skills are required"),
+    location: z.string().min(1, "Select a location"),
+    company_id: z.string().min(1, "Select or add a company"),
+    about_company: z.string().optional(),
+    description: z.string().min(1, "Job description is required"),
 });
 
 const PostJob = () => {
     const { user, isLoaded } = useUser();
     const navigate = useNavigate();
+    const [isGenerating, setIsGenerating] = useState(false);
 
     const {
         register,
@@ -55,28 +52,28 @@ const PostJob = () => {
     } = useForm({
         defaultValues: {
             title: "",
-            category: "",
             salary: "",
             job_type: "",
             experience: "",
             openings: "",
-            start_date: "",
+            skills: "",
             location: "",
             company_id: "",
-            requirements: "",
+            about_company: "",
+            description: "",
         },
         resolver: zodResolver(schema),
     });
 
-    const [isGenerating, setIsGenerating] = useState(false);
+ 
 
     const handleGenerateJD = async () => {
         const title = watch("title");
         const experience = watch("experience");
-        const requirements = watch("requirements");
+        const skills = watch("skills");
 
-        if (!title || !experience || !requirements) {
-            alert("Please fill Job Title, Experience and Requirements");
+        if (!title || !experience || !skills) {
+            alert("Please fill Job Title, Experience and Skills");
             return;
         }
 
@@ -86,7 +83,7 @@ const PostJob = () => {
             const generatedText = await generateJobDescription(
                 title,
                 experience,
-                requirements
+                skills
             );
             setValue("description", generatedText);
         } catch (error) {
@@ -139,7 +136,7 @@ const PostJob = () => {
 
     return (
         <div className="mx-auto max-w-7xl">
-            <h1 className="mt-5 font-extrabold text-3xl sm:text-5xl text-center pb-8">
+            <h1 className="mt-5 font-extrabold text-4xl text-center pb-8">
                 Post a Job
             </h1>
             <form
@@ -151,7 +148,7 @@ const PostJob = () => {
                     {/* job title  */}
                     <div>
                         <label className="text-sm font-medium text-gray-400">Job Title*</label>
-                        <Input placeholder="e.g. Frontend Developer" {...register("title")} />
+                        <Input label="Hob title" placeholder="e.g. Frontend Developer" {...register("title")} />
                         {errors.title && (
                             <p className="text-red-500">
                                 {errors.title.message}
@@ -217,59 +214,20 @@ const PostJob = () => {
                             </p>
                         )}{" "}
                     </div>
-                    {/* Start date  */}
+                    {/* Skills  */}
                     <div>
-                        <label className="text-sm font-medium text-gray-400">Start Date</label>
+                        <label className="text-sm font-medium text-gray-400">Required Skills*</label>
                         <Input
-                            placeholder="e.g. Immediately"
-                            {...register("start_date")}
+                            placeholder="e.g. React, Node, MySQL, Java"
+                            {...register("skills")}
                         />
-                        {/* {errors.start_date && (
+                        {errors.skills && (
                         <p className="text-red-500">
-                        {errors.start_date.message}
+                        {errors.skills.message}
                         </p>
-                        )} */}
+                        )}
                     </div>
                 </div>
-
-                {/* Job description  */}
-                <div className="space-y-4">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <label className="text-sm font-medium text-gray-400">About the Job</label>
-                        <button
-                            type="button"
-                            onClick={handleGenerateJD}
-                            disabled={isGenerating}
-                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold hover:bg-purple-500/20 transition-all disabled:opacity-50"
-                        >
-                            {isGenerating ? (
-                                <div className="w-3 h-3 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
-                            ) : (
-                                <Cpu />
-                            )}
-                            {isGenerating ? 'Generating Description...' : '✨ Generate with AI'}
-                        </button>
-                    </div>
-                    <textarea
-                        {...register("description")}
-                        rows={8}
-                        placeholder="Describe the role, impact, and daily life at your company..."
-                        className="w-full px-4 py-3 bg-[#0a0a0b] border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 leading-relaxed"
-                    ></textarea>
-                </div>
-
-                {/* <div>
-                    <label className="text-sm font-medium text-gray-400">About the Job</label>
-                    <Textarea
-                        placeholder="Brief description of the role..."
-                        {...register("description")}
-                    />
-                    {errors.description && (
-                        <p className="text-red-500">
-                            {errors.description.message}
-                        </p>
-                    )}
-                </div> */}
 
                 {/* Location & Company  */}
                 <div className="flex gap-4 items-center">
@@ -359,11 +317,37 @@ const PostJob = () => {
                     <AddCompanyDrawer fetchCompanies={fnCompanies} />
                 </div>
 
-                {/* job requirements  */}
+                {/* About Company  */}
+                <div className="space-y-4">
+                    <label className="text-sm font-medium text-gray-400">About Company</label>
+                    <textarea
+                        {...register("about_company")}
+                        rows={4}
+                        placeholder="Describe the role, impact, and daily life at your company..."
+                        className="w-full px-4 py-3 bg-[#0a0a0b] border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 leading-relaxed"
+                    ></textarea>
+                </div> 
+
+                {/* Job Description  */}
                 <div>
-                    <label className="text-sm font-medium text-gray-400">Job Requirements (Rich Text)</label>
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <label className="text-sm font-medium text-gray-400">Job Description</label>
+                        <button
+                            type="button"
+                            onClick={handleGenerateJD}
+                            disabled={isGenerating}
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold hover:bg-purple-500/20 transition-all disabled:opacity-50"
+                        >
+                            {isGenerating ? (
+                                <div className="w-3 h-3 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                                <Cpu />
+                            )}
+                            {isGenerating ? 'Generating Description...' : '✨ Generate with AI'}
+                        </button>
+                    </div>
                     <Controller
-                        name="requirements"
+                        name="description"
                         control={control}
                         render={({ field }) => (
                             <MDEditor

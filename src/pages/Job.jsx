@@ -95,7 +95,7 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => { } }) => 
                             </div>
                         </div>
 
-                        
+
 
                         <p className=" text-slate-300 font-thin">
                             via{" "}
@@ -241,17 +241,17 @@ const Job = ({ isMyJob = false, savedInit = false, onJobSaved = () => { } }) => 
                         </SelectContent>
                     </Select>}
                 <hr className="border-1 border-gray-400" />
-                {/* TODO: hiring status */}
+
+                {/*  About the Company  */}
+                {job?.about_company && (<h2 className="text-2xl md:text-3xl font-semibold">About Company </h2>)}
+                <p>{job?.about_company}</p>
+
                 {/* Job description  */}
-                <h2 className="text-2xl md:text-3xl font-semibold">
-                    About the job
-                </h2>
-                <p>{job?.description}</p>
                 <h2 className="text-2xl md:text-3xl  font-semibold">
-                    Job Requirements
+                    Job Description
                 </h2>
                 <MDEditor.Markdown
-                    source={job?.requirements}
+                    source={job?.description}
                     style={{ background: "transparent" }}
                 />
                 <hr className="border-1 border-gray-400" />
