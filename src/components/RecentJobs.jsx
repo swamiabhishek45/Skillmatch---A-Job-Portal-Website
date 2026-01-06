@@ -56,7 +56,7 @@ const RecentJobs = () => {
     }, [isLoaded]);
 
 
-// console.log(jobs);
+    // console.log(jobs);
 
     return (
         <div>
@@ -70,45 +70,45 @@ const RecentJobs = () => {
             </div>
 
             <div className="max-w-7xl mx-5 xl:mx-auto">
-                    {loadingJobs === false && (
-                        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-                            {jobs?.length ? (
-                                jobs
-                                    .sort(
-                                        (a, b) =>
-                                            new Date(b.created_at) -
-                                            new Date(a.created_at)
-                                    )
-                                    .map((job) => (
-                                        <JobCard
-                                            key={job.id}
-                                            job={job}
-                                            savedInit={job?.saved?.length > 0}
-                                        />
-                                    ))
-                            ) : (
-                                <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
-                                    {/* <img src={NoJobFound} width={250} height={250} /> */}
+                {loadingJobs === false && (
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
+                        {jobs?.length ? (
+                            jobs
+                                .sort(
+                                    (a, b) =>
+                                        new Date(b.created_at) -
+                                        new Date(a.created_at)
+                                ).slice(0, 6)
+                                .map((job) => (
+                                    <JobCard
+                                        key={job.id}
+                                        job={job}
+                                        savedInit={job?.saved?.length > 0}
+                                    />
+                                ))
+                        ) : (
+                            <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+                                {/* <img src={NoJobFound} width={250} height={250} /> */}
 
-                                    <h2 className="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
-                                        No Jobs Found
-                                    </h2>
+                                <h2 className="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
+                                    No Jobs Found
+                                </h2>
 
-                                    <p className="mt-2 max-w-md text-gray-500 dark:text-gray-400">
-                                        Sorry, the job you are looking for does not exist or may have been removed.
-                                    </p>
+                                <p className="mt-2 max-w-md text-gray-500 dark:text-gray-400">
+                                    Sorry, the job you are looking for does not exist or may have been removed.
+                                </p>
 
-                                    <button
-                                        onClick={() => window.history.back()}
-                                        className="mt-6 rounded-lg bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 transition"
-                                    >
-                                        Go Back
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                
+                                <button
+                                    onClick={() => window.history.back()}
+                                    className="mt-6 rounded-lg bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 transition"
+                                >
+                                    Go Back
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
+
             </div>
 
             <div className="flex my-10 items-center justify-center">
