@@ -88,7 +88,7 @@ export const analyzeResume = async (input, jobContext) => {
 };
 
 export const generateJobDescription = async (role, experience, techStack) => {
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
     const prompt = `
     As a professional HR specialist, generate a compelling and professional job description for the following role:
