@@ -15,11 +15,13 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import useFetch from "@/hooks/useFetch";
+import { generateJobDescription } from "@/services/geminiServices";
 import { useUser } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import MDEditor from "@uiw/react-md-editor";
 import { State, City } from "country-state-city";
-import { useEffect } from "react";
+import { Cpu } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router-dom";
 import { BarLoader } from "react-spinners";
@@ -47,6 +49,8 @@ const PostJob = () => {
         register,
         handleSubmit,
         control,
+        watch,
+        setValue,
         formState: { errors },
     } = useForm({
         defaultValues: {
@@ -64,6 +68,36 @@ const PostJob = () => {
         resolver: zodResolver(schema),
     });
 
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    const handleGenerateJD = async () => {
+        const title = watch("title");
+        const experience = watch("experience");
+        const requirements = watch("requirements");
+
+        if (!title || !experience || !requirements) {
+            alert("Please fill Job Title, Experience and Requirements");
+            return;
+        }
+
+        setIsGenerating(true);
+
+        try {
+            const generatedText = await generateJobDescription(
+                title,
+                experience,
+                requirements
+            );
+            setValue("description", generatedText);
+        } catch (error) {
+            console.error(error);
+            alert("AI generation failed. Please try again.");
+        } finally {
+            setIsGenerating(false);
+        }
+    };
+
+
     const {
         loading: loadingCreateJob,
         error: errorCreateJob,
@@ -80,8 +114,8 @@ const PostJob = () => {
     };
 
     useEffect(() => {
-        if (dataCreateJob?.length > 0) navigate("/jobs");
-    }, [loadingCreateJob]);
+        if (dataCreateJob) navigate("/jobs");
+    }, [dataCreateJob]);
 
     const {
         loading: loadingCompanies,
@@ -112,9 +146,11 @@ const PostJob = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-4 p-4 pb-0"
             >
+                {/* Fields  */}
                 <div className="grid grid-cols-2 gap-4">
+                    {/* job title  */}
                     <div>
-                        <label className="text-sm font-medium text-gray-400">Job Title</label>
+                        <label className="text-sm font-medium text-gray-400">Job Title*</label>
                         <Input placeholder="e.g. Frontend Developer" {...register("title")} />
                         {errors.title && (
                             <p className="text-red-500">
@@ -122,24 +158,29 @@ const PostJob = () => {
                             </p>
                         )}
                     </div>
-                    {/* <Input
+                    {/* job category  */}
+                    {/* <div>
+                        <Input
                         placeholder="Job Category"
                         {...register("category")}
-                    />
-                    {errors.category && (
-                        <p className="text-red-500">
+                        />
+                        {errors.category && (
+                            <p className="text-red-500">
                             {errors.category.message}
-                        </p>
-                    )} */}
+                            </p>
+                            )}
+                    </div> */}
+                    {/* salary  */}
                     <div>
                         <label className="text-sm font-medium text-gray-400">Salary</label>
                         <Input placeholder="e.g. ₹ 80k - 100k" {...register("salary")} />
-                    </div>
-                    {/* {errors.salary && (
+                        {/* {errors.salary && (
                         <p className="text-red-500">{errors.salary.message}</p>
-                    )} */}
+                         )} */}
+                    </div>
+                    {/* Job Type  */}
                     <div>
-                        <label className="text-sm font-medium text-gray-400">Job Type</label>
+                        <label className="text-sm font-medium text-gray-400">Job Type*</label>
                         <Input
                             placeholder="e.g. Full-time, Remote"
                             {...register("job_type")}
@@ -150,6 +191,7 @@ const PostJob = () => {
                             </p>
                         )}
                     </div>
+                    {/* Experience  */}
                     <div>
                         <label className="text-sm font-medium text-gray-400">Experience</label>
                         <Input
@@ -162,8 +204,9 @@ const PostJob = () => {
                         </p>
                         )} */}
                     </div>
+                    {/* Openings  */}
                     <div>
-                        <label className="text-sm font-medium text-gray-400">Openings</label>
+                        <label className="text-sm font-medium text-gray-400">Openings*</label>
                         <Input
                             placeholder="e.g. 10"
                             {...register("openings")}
@@ -174,6 +217,7 @@ const PostJob = () => {
                             </p>
                         )}{" "}
                     </div>
+                    {/* Start date  */}
                     <div>
                         <label className="text-sm font-medium text-gray-400">Start Date</label>
                         <Input
@@ -188,7 +232,33 @@ const PostJob = () => {
                     </div>
                 </div>
 
-                <div>
+                {/* Job description  */}
+                <div className="space-y-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <label className="text-sm font-medium text-gray-400">About the Job</label>
+                        <button
+                            type="button"
+                            onClick={handleGenerateJD}
+                            disabled={isGenerating}
+                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold hover:bg-purple-500/20 transition-all disabled:opacity-50"
+                        >
+                            {isGenerating ? (
+                                <div className="w-3 h-3 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                            ) : (
+                                <Cpu />
+                            )}
+                            {isGenerating ? 'Generating Description...' : '✨ Generate with AI'}
+                        </button>
+                    </div>
+                    <textarea
+                        {...register("description")}
+                        rows={8}
+                        placeholder="Describe the role, impact, and daily life at your company..."
+                        className="w-full px-4 py-3 bg-[#0a0a0b] border border-white/10 rounded-xl focus:outline-none focus:border-purple-500 leading-relaxed"
+                    ></textarea>
+                </div>
+
+                {/* <div>
                     <label className="text-sm font-medium text-gray-400">About the Job</label>
                     <Textarea
                         placeholder="Brief description of the role..."
@@ -199,8 +269,11 @@ const PostJob = () => {
                             {errors.description.message}
                         </p>
                     )}
-                </div>
+                </div> */}
+
+                {/* Location & Company  */}
                 <div className="flex gap-4 items-center">
+                    {/* Location  */}
                     <div className="w-full">
                         <label className="text-sm font-medium text-gray-400">Job Location</label>
                         <Controller
@@ -238,6 +311,7 @@ const PostJob = () => {
                             </p>
                         )}
                     </div>
+                    {/* Company  */}
                     <div className="w-full">
                         <label className="text-sm font-medium text-gray-400">Company</label>
                         <Controller
@@ -265,7 +339,7 @@ const PostJob = () => {
                                                 ({ company_name, id }) => (
                                                     <SelectItem
                                                         key={company_name}
-                                                        value={id}
+                                                        value={String(id)}
                                                     >
                                                         {company_name}
                                                     </SelectItem>
@@ -285,6 +359,7 @@ const PostJob = () => {
                     <AddCompanyDrawer fetchCompanies={fnCompanies} />
                 </div>
 
+                {/* job requirements  */}
                 <div>
                     <label className="text-sm font-medium text-gray-400">Job Requirements (Rich Text)</label>
                     <Controller
@@ -303,9 +378,9 @@ const PostJob = () => {
                         </p>
                     )}
                 </div>
-                {errors.errorCreateJob && (
+                {errorCreateJob?.message && (
                     <p className="text-red-500">
-                        {errors?.errorCreateJob?.message}
+                        {errorCreateJob.message}
                     </p>
                 )}
                 {errorCreateJob?.message && (

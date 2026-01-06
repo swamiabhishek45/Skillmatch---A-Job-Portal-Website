@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Briefcase, FileText, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Briefcase, FileText, Rocket, Sparkles, Zap } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
 
 const Header = () => {
     const { user } = useUser();
-    // console.log(user);
+    console.log(user);
 
     return (
         <div className="mt-24 px-4 md:px-0">
@@ -56,10 +56,11 @@ const Header = () => {
                 </Link>
 
                 {
-                    user?.role == "recruiter" ? (<Link
+                    user?.unsafeMetadata?.role == "recruiter" ? (<Link
                         to="/post-job"
                         className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-10 py-4 text-center text-base font-semibold text-slate-300 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white active:scale-95 border-b-4 border-b-slate-800"
                     >
+                        <Rocket />
                         Start Hiring
                     </Link>) : (<Link
                         to="/analyze-resume"
