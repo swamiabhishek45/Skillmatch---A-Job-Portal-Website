@@ -56,7 +56,7 @@ const RecentJobs = () => {
     }, [isLoaded]);
 
 
-    // console.log(jobs);
+    console.log(jobs);
 
     return (
         <div>

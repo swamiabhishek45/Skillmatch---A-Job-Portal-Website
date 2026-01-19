@@ -263,7 +263,7 @@ const ResumeAnalyzer= () => {
                                     <Cpu />
                                 </div>
                             </div>
-                            <h3 className="text-xl md:text-2xl font-bold mb-2">Gemini AI is Reviewing</h3>
+                            <h3 className="text-xl md:text-2xl font-bold mb-2">Your resume is Reviewing</h3>
                             <p className="text-sm text-gray-400 animate-pulse">Scanning skills, experience, and tailoring suggestions...</p>
                         </div>
                     )}
