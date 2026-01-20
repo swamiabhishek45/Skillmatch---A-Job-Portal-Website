@@ -36,22 +36,23 @@ const FAQ = () => {
         },
     ];
     return (
-        <div className="mx-auto max-w-7xl">
-            <h1 className="text-xl md:text-3xl font-bold text-center poppins my-10">
-                Frequently Asked{" "}
-                <span className="text-purple-500">Questions</span>
+        <div className="mx-auto max-w-7xl pt-20">
+            <h1 className="text-3xl md:text-5xl font-bold text-center poppins mb-12 text-white">
+                Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Questions</span>
             </h1>
-            <Accordion type="single" collapsible className=" max-w-6xl m-auto">
+            <Accordion type="single" collapsible className="w-full max-w-4xl mx-auto px-5">
                 {data.map((faq) => (
-                    <AccordionItem value={`index-${faq.id}`} key={faq.id}>
-                        <div className="bg-[#0e1728] my-5  px-5 rounded-md">
-                            <AccordionTrigger className="text-start">
+                    <AccordionItem 
+                        value={`index-${faq.id}`} 
+                        key={faq.id}
+                        className="border-b border-white/10 last:border-0 mb-4"
+                    >
+                         <AccordionTrigger className="text-left text-lg font-medium text-slate-200 hover:text-purple-400 transition-colors data-[state=open]:text-purple-400 py-6 no-underline hover:no-underline">
                                 {faq.question}
-                            </AccordionTrigger>
-                            <AccordionContent className="text-start">
+                        </AccordionTrigger>
+                        <AccordionContent className="text-base text-slate-400 leading-relaxed pb-6">
                                 {faq.answer}
-                            </AccordionContent>
-                        </div>
+                        </AccordionContent>
                     </AccordionItem>
                 ))}
             </Accordion>

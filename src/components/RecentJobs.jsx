@@ -55,6 +55,8 @@ const RecentJobs = () => {
         if (isLoaded) fnJobs();
     }, [isLoaded]);
 
+    console.log(loadingJobs);
+    
 
     console.log(jobs);
 
@@ -65,7 +67,7 @@ const RecentJobs = () => {
                     borderRadius="1.75rem"
                     className="bg-white dark:bg-[#070916] text-black dark:text-white border-neutral-200 dark:border-slate-800 poppins cursor-default  font-semibold"
                 >
-                    Recentely Job Circular
+                    Recently Job Circular
                 </Button>
             </div>
 
@@ -87,7 +89,7 @@ const RecentJobs = () => {
                                     />
                                 ))
                         ) : (
-                            <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+                            <div className="col-span-full flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
                                 {/* <img src={NoJobFound} width={250} height={250} /> */}
 
                                 <h2 className="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
@@ -114,7 +116,7 @@ const RecentJobs = () => {
             <div className="flex my-10 items-center justify-center">
                 <Link to="/jobs">
                     <InteractiveHoverButton>
-                        Show more jobs
+                        Show More Jobs
                     </InteractiveHoverButton>
                 </Link>
             </div>

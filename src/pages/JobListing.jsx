@@ -24,17 +24,28 @@ const JobListing = () => {
     const [location, setLocation] = useState("");
     const [company_id, setCompany_id] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [page, setPage] = useState(1);
+    const limit = 9;
 
     // fetching jobs
     const {
         fn: fnJobs,
-        data: jobs,
+        data: jobsData,
         loading: loadingJobs,
-    } = useFetch(getJobs, { location, company_id, searchQuery });
+    } = useFetch(getJobs, { location, company_id, searchQuery, page, limit });
+
+    const jobs = jobsData?.data || [];
+    const totalJobs = jobsData?.count || 0;
+    const totalPages = Math.ceil(totalJobs / limit);
 
     useEffect(() => {
         if (isLoaded) fnJobs();
-    }, [isLoaded, location, company_id, searchQuery]);
+    }, [isLoaded, location, company_id, searchQuery, page]);
+
+    // Reset page when filters change
+    useEffect(() => {
+        setPage(1);
+    }, [location, company_id, searchQuery]);
 
     // fetching companies
     const { fn: fnCompanies, data: companies } = useFetch(getCompanies);
@@ -134,42 +145,62 @@ const JobListing = () => {
 
             {/* listing jobs  */}
             {loadingJobs === false && (
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-                    {jobs?.length ? (
-                        jobs
-                            .sort(
-                                (a, b) =>
-                                    new Date(b.created_at) -
-                                    new Date(a.created_at)
-                            )
-                            .map((job) => (
-                                <JobCard
-                                    key={job.id}
-                                    job={job}
-                                    savedInit={job?.saved?.length > 0}
-                                />
-                            ))
-                    ) : (
-                            <div className="flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
+                <>
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
+                        {jobs?.length ? (
+                            jobs
+                                .sort(
+                                    (a, b) =>
+                                        new Date(b.created_at) -
+                                        new Date(a.created_at)
+                                )
+                                .map((job) => (
+                                    <JobCard
+                                        key={job.id}
+                                        job={job}
+                                        savedInit={job?.saved?.length > 0}
+                                    />
+                                ))
+                        ) : (
+                            <div className="col-span-full flex min-h-[60vh] flex-col items-center justify-center text-center px-4">
                                 <img src={NoJobFound}  width={250} height={250} />
 
                                 <h2 className="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-300">
                                 No Jobs Found
                                 </h2>
 
-                                <p className="mt-2 max-w-md text-gray-500 dark:text-gray-400">
-                                    Sorry, the job you are looking for does not exist or may have been removed.
+                                <p className="mt-2 text-gray-500 dark:text-gray-400">
+                                    Sorry, there are no jobs matching your search criteria.
                                 </p>
-
-                                <button
-                                    onClick={() => window.history.back()}
-                                    className="mt-6 rounded-lg bg-purple-600 px-6 py-2 text-white hover:bg-purple-700 transition"
-                                >
-                                    Go Back
-                                </button>
                             </div>
+                        )}
+                    </div>
+
+                    {/* Pagination Controls */}
+                    {totalJobs > 0 && (
+                        <div className="flex justify-center items-center gap-4 mt-8 mb-10">
+                            <Button
+                                variant="outline"
+                                onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                                disabled={page === 1}
+                            >
+                                Previous
+                            </Button>
+                            
+                            <span className="text-sm font-medium">
+                                Page {page} of {totalPages}
+                            </span>
+
+                            <Button
+                                variant="outline"
+                                onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+                                disabled={page === totalPages}
+                            >
+                                Next
+                            </Button>
+                        </div>
                     )}
-                </div>
+                </>
             )}
         </div>
     );

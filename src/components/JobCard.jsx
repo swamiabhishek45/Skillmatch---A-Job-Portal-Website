@@ -113,7 +113,7 @@ const JobCard = ({
         </div>
 
         <div className="flex items-center gap-2">
-          ₹ {job.salary || "Not Disclosed"}
+          {job.salary || "Not Disclosed"}
         </div>
 
         <div className="flex items-center gap-2">
@@ -123,7 +123,7 @@ const JobCard = ({
 
         <div className="flex items-center gap-2">
           <FiClock />
-          {job.experience} years
+          {job.experience}
         </div>
       </div>
 

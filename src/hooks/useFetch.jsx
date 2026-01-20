@@ -7,7 +7,7 @@ const useFetch = (cb, options = {}) => {
     const [error, setError] = useState(null);
     
     const { session } = useSession();
-    // console.log(data);
+    console.log(session);
 
 
     const fn = async (...args) => {

@@ -1,13 +1,14 @@
 import supabaseClient from "@/utils/supabase";
 
-export async function getJobs(token, { location, company_id, searchQuery }) {
+export async function getJobs(token, { location, company_id, searchQuery, page = 1, limit = 9 }) {
     const supabase = await supabaseClient(token);
     // console.log(supabase);
 
     let query = supabase
         .from("jobs")
         .select(
-            "*, company:companies(company_name, company_logo_url), saved: saved_jobs(id)"
+            "*, company:companies(company_name, company_logo_url), saved: saved_jobs(id)",
+            { count: "exact" }
         );
 
     if (location) {
@@ -22,14 +23,18 @@ export async function getJobs(token, { location, company_id, searchQuery }) {
         query = query.ilike("title", `%${searchQuery}%`);
     }
 
-    const { data, error } = await query;
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+    query = query.range(from, to);
+
+    const { data, error, count } = await query;
 
     if (error) {
         console.error("Error fetching jobs: ", error);
         return null;
     }
 
-    return data;
+    return { data, count };
 }
 
 export async function saveJobs(token, { alreadySaved }, saveData) {

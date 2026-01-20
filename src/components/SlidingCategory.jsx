@@ -45,20 +45,16 @@ const SlidingCategory = () => {
 
 export default SlidingCategory;
 
-const CategoryList = ({stacks}) => {
-    
+const CategoryList = ({ stacks }) => {
     return (
-        <ul className="flex items-center" role="list">
+        <ul className="flex items-center py-4" role="list">
             {stacks.map((stack, index) => {
-                // const Icon = stacks[stack].Icon;
-                // const className = stacks[stack].className;
                 return (
                     <li
                         role="listitem"
                         key={index}
-                        className="mr-2 flex w-max items-center gap-2 rounded-full border  px-3 py-2 text-[15px] shadow-sm border-neutral-800 bg-[#070916] text-neutral-50"
+                        className="mr-6 flex w-max items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-6 py-3 text-sm font-medium shadow-lg backdrop-blur-md hover:border-purple-500/50 hover:bg-purple-500/10 transition-all cursor-default text-gray-300 hover:text-white group"
                     >
-                        {/* {<Icon className={className} aria-label={stack} />} */}
                         <span className="whitespace-nowrap">{stack}</span>
                     </li>
                 );
