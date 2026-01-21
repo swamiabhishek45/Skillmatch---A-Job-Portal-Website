@@ -15,7 +15,7 @@ const MyJobs = () => {
             <h1 className="mt-5 font-extrabold text-3xl sm:text-5xl text-center pb-8">
                 {user?.unsafeMetadata?.role === "candidate"
                     ? "My Applications"
-                    : "My Jobs"}
+                    : "My Posted Jobs"}
             </h1>
 
             {user?.unsafeMetadata?.role === "candidate" ? (

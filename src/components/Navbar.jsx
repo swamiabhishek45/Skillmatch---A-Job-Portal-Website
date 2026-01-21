@@ -8,7 +8,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
-import { BookmarkIcon, BriefcaseBusiness, PenBox } from "lucide-react";
+import { BookmarkIcon, BriefcaseBusiness, LayoutDashboard, PenBox } from "lucide-react";
 import Logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -81,6 +81,13 @@ const Navbar = () => {
                                 {user?.unsafeMetadata?.role === "recruiter" ? (
                                     <UserButton.MenuItems>
                                         <UserButton.Link
+                                            label="Dashboard"
+                                            labelIcon={
+                                                <LayoutDashboard size={15} />
+                                            }
+                                            href="/dashboard"
+                                        />
+                                        <UserButton.Link
                                             label="My Posted Jobs"
                                             labelIcon={
                                                 <BriefcaseBusiness size={15} />
@@ -90,6 +97,13 @@ const Navbar = () => {
                                     </UserButton.MenuItems>
                                 ) : (
                                     <UserButton.MenuItems>
+                                        <UserButton.Link
+                                            label="Dashboard"
+                                            labelIcon={
+                                                <LayoutDashboard size={15} />
+                                            }
+                                            href="/dashboard"
+                                        />
                                         <UserButton.Link
                                             label="My Applied Jobs"
                                             labelIcon={

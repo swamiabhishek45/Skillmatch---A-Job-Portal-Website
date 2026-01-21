@@ -7,6 +7,7 @@ import Job from "./pages/Job";
 import MyJobs from "./pages/MyJobs";
 import SavedJobs from "./pages/SavedJobs";
 import PostJob from "./pages/PostJob";
+import Dashboard from "./pages/Dashboard";
 import { ThemeProvider } from "./components/ui/theme-provider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
@@ -25,6 +26,14 @@ function App() {
                     element: (
                         <ProtectedRoute>
                             <Onboarding />
+                        </ProtectedRoute>
+                    ),
+                },
+                {
+                    path: "/dashboard",
+                    element: (
+                        <ProtectedRoute>
+                            <Dashboard />
                         </ProtectedRoute>
                     ),
                 },

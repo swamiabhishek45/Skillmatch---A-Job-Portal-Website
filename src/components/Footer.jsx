@@ -74,7 +74,7 @@ const Footer = () => {
                                 </a>
                             </div>
                             <p className="mt-8 text-xs text-gray-500">
-                                © 2024 SkillMatch Inc
+                                © 2025 SkillMatch Inc
                             </p>
                         </div>
                     </div>

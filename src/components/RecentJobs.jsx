@@ -74,8 +74,8 @@ const RecentJobs = () => {
             <div className="max-w-7xl mx-5 xl:mx-auto">
                 {loadingJobs === false && (
                     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-5">
-                        {jobs?.length ? (
-                            jobs
+                        {jobs?.data?.length ? (
+                            jobs?.data
                                 .sort(
                                     (a, b) =>
                                         new Date(b.created_at) -
