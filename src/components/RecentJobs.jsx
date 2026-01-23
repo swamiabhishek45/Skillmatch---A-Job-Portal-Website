@@ -8,6 +8,7 @@ import useFetch from "@/hooks/useFetch";
 import { getJobs } from "@/api/apiJobs";
 import { useUser } from "@clerk/clerk-react";
 import JobCard from "./JobCard";
+import { BarLoader } from "react-spinners";
 
 const RecentJobs = () => {
     // const [jobs, setJobs] = useState([]);
@@ -55,10 +56,13 @@ const RecentJobs = () => {
         if (isLoaded) fnJobs();
     }, [isLoaded]);
 
-    console.log(loadingJobs);
-    
-
-    console.log(jobs);
+    if (!isLoaded) {
+        return (
+            <div className="flex items-center justify-center min-h-[60vh]">
+                <BarLoader width={200} color="#a855f7" />
+            </div>
+        );
+    }
 
     return (
         <div>

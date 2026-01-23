@@ -7,7 +7,7 @@ import { FaGoogle, FaMicrosoft, FaApple, FaAmazon, FaSpotify, FaSlack } from "re
 
 const Header = () => {
     const { user } = useUser();
-    console.log(user);
+    // console.log(user);
 
     return (
         <div className="mt-24 px-4 md:px-0 relative">
