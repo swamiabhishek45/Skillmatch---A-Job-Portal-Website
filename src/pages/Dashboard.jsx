@@ -9,11 +9,7 @@ const Dashboard = () => {
     const { user, isLoaded } = useUser();
 
     if (!isLoaded) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <BarLoader width={200} color="#a855f7" />
-            </div>
-        );
+        return <BarLoader className="mb-4" width={"100%"} color="purple" />;
     }
 
     // Redirect to onboarding if role not set

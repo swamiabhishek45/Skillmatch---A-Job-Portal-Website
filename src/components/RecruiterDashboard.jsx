@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { BarLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import {
     Briefcase,
@@ -89,14 +88,6 @@ const RecruiterDashboard = () => {
 
         return { applied, interviewing, hired, rejected };
     }, [jobs]);
-
-    if (loadingJobs) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <BarLoader width={200} color="#a855f7" />
-            </div>
-        );
-    }
 
     return (
         <div className="space-y-8">

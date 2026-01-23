@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { BarLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import {
     FileText,
@@ -50,14 +49,6 @@ const CandidateDashboard = () => {
             .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
             .slice(0, 5);
     }, [applications]);
-
-    if (loadingApplications) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <BarLoader width={200} color="#a855f7" />
-            </div>
-        );
-    }
 
     return (
         <div className="space-y-8">

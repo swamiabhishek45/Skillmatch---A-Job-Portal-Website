@@ -9,40 +9,11 @@ import { getJobs } from "@/api/apiJobs";
 import { useUser } from "@clerk/clerk-react";
 import JobCard from "./JobCard";
 import { BarLoader } from "react-spinners";
+import HowItWorks from "./HowItWorks";
 
 const RecentJobs = () => {
-    // const [jobs, setJobs] = useState([]);
 
-    // useEffect(() => {
-    //     // Fetch jobs data
-    //     const fetchJobs = async () => {
-    //         try {
-    //             const response = await fetch(
-    //                 "https://remotive.com/api/remote-jobs?limit=6"
-    //             );
-    //             const data = await response.json();
-
-    //             // Combine all arrays and get first three jobs
-    //             const allJobs = data.jobs.flat(); // Flattening nested arrays
-    //             const sortedJobs = allJobs
-    //                 .sort(
-    //                     (a, b) =>
-    //                         new Date(b.publication_date) -
-    //                         new Date(a.publication_date)
-    //                 ) // Sort by latest
-    //                 .slice(0, 6); // Get first 3 jobs
-
-    //             setJobs(sortedJobs);
-    //             console.log(sortedJobs);
-    //         } catch (error) {
-    //             console.error("Error fetching jobs:", error);
-    //         }
-    //     };
-
-    //     fetchJobs();
-    // }, []);
-
-    const { isLoaded } = useUser();
+    const { isLoaded, isSignedIn } = useUser();
 
 
     // fetching jobs
@@ -56,12 +27,16 @@ const RecentJobs = () => {
         if (isLoaded) fnJobs();
     }, [isLoaded]);
 
-    if (!isLoaded) {
-        return (
-            <div className="flex items-center justify-center min-h-[60vh]">
-                <BarLoader width={200} color="#a855f7" />
-            </div>
-        );
+    // if (!isLoaded) {
+    //     return (
+    //         <div className="flex items-center justify-center min-h-[60vh]">
+    //             <BarLoader width={200} color="#a855f7" />
+    //         </div>
+    //     );
+    // }
+
+    if (!isSignedIn) {
+        return <HowItWorks />;
     }
 
     return (
